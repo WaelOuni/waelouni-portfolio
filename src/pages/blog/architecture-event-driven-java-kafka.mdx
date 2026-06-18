@@ -1,0 +1,44 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: "Architecture event-driven avec Java, Spring Boot et Kafka"
+description: "Comprendre l'architecture event-driven avec Java, Spring Boot et Kafka : avantages, risques, patterns, résilience et observabilité."
+type: "article"
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Architecture event-driven avec Java, Spring Boot et Kafka
+
+Une architecture event-driven permet à des applications de réagir à des événements métier plutôt que de dépendre uniquement d'appels synchrones. Avec Java, Spring Boot et Kafka, ce modèle est très adapté aux domaines où les données doivent être diffusées à plusieurs consommateurs.
+
+## Pourquoi choisir l'event-driven
+
+Le principal avantage est le découplage. Un producteur publie un événement, plusieurs consommateurs peuvent l'utiliser sans dépendre directement du producteur. Cela facilite l'extension du système, l'intégration de nouveaux usages et la résilience face aux variations de charge.
+
+Dans un contexte retail ou catalogue produit, ce modèle permet de propager des changements de données vers plusieurs applications : recherche, stock, pricing, PIM, reporting ou systèmes partenaires.
+
+## Avantages et risques
+
+Les avantages sont clairs : scalabilité, découplage, historisation, traitement asynchrone et meilleure absorption des pics. Les risques le sont aussi : cohérence éventuelle mal comprise, contrats d'événements instables, duplication de messages, diagnostic plus complexe et reprocessing délicat.
+
+Une équipe doit donc documenter les événements, définir les responsabilités de chaque service et surveiller la chaîne de bout en bout.
+
+## Patterns utiles
+
+Les patterns les plus fréquents sont l'idempotence, la DLQ, le retry avec backoff, le reprocessing contrôlé, la compatibilité de schéma et l'outbox pattern. Ces mécanismes réduisent le risque d'état incohérent après un incident ou un déploiement.
+
+L'outbox pattern est particulièrement utile lorsqu'un service doit persister une donnée puis publier un événement sans perdre la cohérence entre base de données et message Kafka.
+
+## Résilience et observabilité
+
+Une architecture event-driven doit être observable dès sa conception. Les équipes doivent suivre le débit, le lag, les erreurs, les retries, les DLQ, la latence de bout en bout et l'état des consommateurs.
+
+La résilience ne se limite pas à redémarrer un pod. Elle implique des messages rejouables, des erreurs isolées, des handlers idempotents et des procédures de récupération connues.
+
+## Conclusion
+
+Java, Spring Boot et Kafka offrent un socle solide pour l'event-driven. La réussite dépend surtout de la qualité des contrats, de l'observabilité, de la stratégie d'erreur et de la capacité des équipes à exploiter le système en production.
+
+  </div>
+</article>

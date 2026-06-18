@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ProjectCard from "@components/ProjectCard.astro";
+import { projects } from "@data/projects";
+---
+
+<BaseLayout
+  title="Projets Java, Kafka, GCP, Angular et DevOps"
+  description="Projets de Wael Ouni autour de Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, Datadog, CI/CD, API REST et systèmes à fort volume de données."
+>
+  <section class="section">
+    <div class="container-page">
+      <div class="mb-12 max-w-3xl">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">Projets</p>
+        <h1 class="text-4xl font-bold text-ink md:text-5xl">Projets techniques représentatifs</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-600">
+          Une sélection de réalisations alignées avec des enjeux de mission fullstack Java senior :
+          flux critiques, microservices, cloud, front-end métier, CI/CD, observabilité et résilience.
+        </p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ExperienceCard from "@components/ExperienceCard.astro";
+import { experiences } from "@data/experiences";
+---
+
+<BaseLayout
+  title="Parcours Développeur Fullstack Java Senior"
+  description="Timeline professionnelle de Wael Ouni : Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, CI/CD, observabilité et systèmes distribués."
+>
+  <section class="section">
+    <div class="container-page">
+      <div class="mb-12 max-w-3xl">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">Parcours</p>
+        <h1 class="text-4xl font-bold text-ink md:text-5xl">Timeline professionnelle</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-600">
+          Un parcours fullstack Java senior orienté architectures distribuées, Kafka, microservices,
+          cloud GCP, interfaces Angular/Vue.js, CI/CD et exploitation de systèmes critiques.
+        </p>
+      </div>
+      <div class="grid gap-8">
+        {experiences.map((experience) => <ExperienceCard experience={experience} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

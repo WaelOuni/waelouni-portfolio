@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ContactCard from "@components/ContactCard.astro";
+---
+
+<BaseLayout
+  title="Contact mission Fullstack Java Spring Boot Kafka"
+  description="Contacter Wael Ouni pour une mission fullstack Java senior à Lille ou en hybride : Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, Datadog et CI/CD."
+>
+  <section class="section">
+    <div class="container-page grid gap-10 md:grid-cols-[1fr_420px] md:items-start">
+      <div>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">Contact</p>
+        <h1 class="text-4xl font-bold text-ink md:text-5xl">Parlons de votre mission fullstack Java</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-600">
+          J'interviens sur des missions fullstack Java senior : microservices Spring Boot, Kafka,
+          GCP, Kubernetes, Angular, Vue.js, observabilité Datadog, CI/CD, sécurité API et support production.
+        </p>
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <div class="rounded-lg border border-line bg-white p-5">
+            <h2 class="text-lg font-bold text-ink">Profil recherché</h2>
+            <p class="mt-2 leading-7 text-slate-600">Missions fullstack Java senior, architecture distribuée, cloud, frontend métier et production.</p>
+          </div>
+          <div class="rounded-lg border border-line bg-white p-5">
+            <h2 class="text-lg font-bold text-ink">Localisation</h2>
+            <p class="mt-2 leading-7 text-slate-600">Lille, France. Disponible en remote ou hybride selon le contexte.</p>
+          </div>
+        </div>
+      </div>
+      <ContactCard />
+    </div>
+  </section>
+</BaseLayout>

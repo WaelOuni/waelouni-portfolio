@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://waelouni.fr/sitemap-index.xml

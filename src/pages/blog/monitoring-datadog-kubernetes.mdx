@@ -1,0 +1,44 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: "Monitoring Datadog pour microservices Kubernetes"
+description: "Mettre en place un monitoring Datadog utile pour microservices Kubernetes : logs, metrics, traces, pods, restarts, dashboards et alerting."
+type: "article"
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Monitoring Datadog pour microservices Kubernetes
+
+Un dashboard Datadog efficace ne cherche pas à afficher toutes les métriques possibles. Il répond à des questions de production : l'application est-elle disponible, traite-t-elle correctement la charge, où se situe l'incident et quelle action mener ensuite ?
+
+## Logs, metrics et traces
+
+Les logs donnent le contexte précis d'une erreur. Les metrics montrent une tendance et permettent l'alerting. Les traces aident à comprendre un parcours distribué entre plusieurs services. Les trois signaux doivent être corrélés par environnement, service, version, pod et identifiants métier lorsque c'est possible.
+
+Pour un microservice Spring Boot, les métriques HTTP, JVM, base de données, Kafka et Kubernetes apportent une vision complète. Les traces sont particulièrement utiles pour identifier une dépendance lente ou instable.
+
+## Surveiller les pods Kubernetes
+
+Un service peut répondre lentement sans être totalement indisponible. Il faut donc suivre les restarts, l'état des pods, la consommation CPU, la mémoire, les limites, les erreurs de readiness et les changements de déploiement.
+
+Les redémarrages fréquents, les OOMKilled et les probes instables sont des signaux à traiter rapidement. Ils révèlent souvent un problème de configuration, une fuite mémoire ou une dépendance externe non maîtrisée.
+
+## Construire des dashboards exploitables
+
+Un bon dashboard commence par une vue synthétique : disponibilité, taux d'erreur, latence, volume, santé Kubernetes et messages Kafka en retard. Les sections suivantes détaillent les dépendances, les erreurs par endpoint, les logs récents et les DLQ.
+
+Il est préférable de créer des widgets orientés action. Un graphique doit aider à décider : rollback, scaling, correction de configuration, reprocessing ou analyse applicative.
+
+## Alerting utile
+
+Une alerte doit être rare, claire et actionnable. Trop d'alertes créent du bruit et dégradent la réaction des équipes. Les seuils doivent tenir compte des heures de charge, des batchs, des périodes de release et de la criticité métier.
+
+Les alertes importantes concernent les erreurs élevées, la latence anormale, le lag Kafka persistant, les DLQ qui augmentent, les pods qui redémarrent et les ressources proches de leurs limites.
+
+## Conclusion
+
+Datadog devient puissant quand il reflète le fonctionnement réel du produit. Pour des microservices Kubernetes, l'objectif est de réduire le temps de diagnostic, sécuriser les mises en production et donner aux équipes une lecture fiable de la production.
+
+  </div>
+</article>

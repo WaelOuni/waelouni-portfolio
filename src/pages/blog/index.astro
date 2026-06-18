@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const posts = [
+  {
+    title: "Kafka avec Spring Boot en production : bonnes pratiques",
+    href: "/blog/kafka-spring-boot-production/",
+    description: "Bonnes pratiques de consumer groups, idempotence, retry, DLQ, Schema Registry et monitoring du lag Kafka."
+  },
+  {
+    title: "Monitoring Datadog pour microservices Kubernetes",
+    href: "/blog/monitoring-datadog-kubernetes/",
+    description: "Construire une observabilité utile avec logs, metrics, traces, pods, restarts, dashboards et alerting."
+  },
+  {
+    title: "Architecture event-driven avec Java, Spring Boot et Kafka",
+    href: "/blog/architecture-event-driven-java-kafka/",
+    description: "Comprendre les avantages, risques, patterns et exigences de résilience d'une architecture event-driven."
+  }
+];
+---
+
+<BaseLayout
+  title="Blog Java, Kafka, Kubernetes et observabilité"
+  description="Articles techniques de Wael Ouni sur Java, Spring Boot, Kafka, Kubernetes, Datadog, architecture event-driven et observabilité."
+>
+  <section class="section">
+    <div class="container-page">
+      <div class="mb-12 max-w-3xl">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">Blog</p>
+        <h1 class="text-4xl font-bold text-ink md:text-5xl">Articles backend Java et production</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-600">
+          Des contenus orientés terrain pour construire, monitorer et faire évoluer des systèmes Java distribués.
+        </p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-3">
+        {
+          posts.map((post) => (
+            <article class="card rounded-lg p-6">
+              <h2 class="text-xl font-bold text-ink">
+                <a class="hover:text-brand-700" href={post.href}>{post.title}</a>
+              </h2>
+              <p class="mt-3 leading-7 text-slate-600">{post.description}</p>
+              <a class="mt-5 inline-flex font-semibold text-brand-700 hover:underline" href={post.href}>Lire l'article</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

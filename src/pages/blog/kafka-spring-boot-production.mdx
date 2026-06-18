@@ -1,0 +1,50 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: "Kafka avec Spring Boot en production : bonnes pratiques"
+description: "Guide pratique pour exploiter Kafka avec Spring Boot en production : consumer groups, idempotence, retry, DLQ, observabilité, Schema Registry et monitoring du lag."
+type: "article"
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Kafka avec Spring Boot en production : bonnes pratiques
+
+Kafka est un excellent socle pour découpler des systèmes, absorber de la charge et diffuser des événements métier. En production, la difficulté n'est pas seulement de consommer un topic : il faut garantir un comportement lisible en cas d'erreur, mesurer le retard, rejouer proprement et éviter les effets de bord.
+
+## Bien concevoir les consumer groups
+
+Un consumer group représente une application logique. Tous les consumers d'un même groupe se partagent les partitions d'un topic. Pour garder un comportement prévisible, il faut aligner le nombre de partitions, la volumétrie attendue et le niveau de parallélisme réel de l'application.
+
+Un bon nommage de group ID aide aussi les équipes d'exploitation. Il doit permettre d'identifier le domaine, l'application et l'environnement. En cas d'incident, cette convention accélère le diagnostic dans les dashboards Kafka et Datadog.
+
+## Rendre les traitements idempotents
+
+Kafka garantit l'ordre dans une partition, mais une application peut relire un message après un crash, un timeout ou un rebalance. Les handlers doivent donc être idempotents : traiter deux fois le même événement ne doit pas créer deux effets métier incohérents.
+
+Les approches courantes sont l'utilisation d'une clé métier stable, d'un identifiant d'événement, d'un état de traitement en base ou d'une contrainte d'unicité. L'objectif est simple : accepter la relecture sans casser la donnée.
+
+## Retry, backoff et DLQ
+
+Tous les échecs ne se valent pas. Une erreur réseau temporaire peut être rejouée avec un backoff. Une donnée invalide doit être isolée rapidement pour ne pas bloquer toute une partition. Une stratégie robuste distingue donc les erreurs transitoires des erreurs fonctionnelles.
+
+La DLQ est utile si elle est exploitable. Elle doit contenir assez de contexte : topic source, partition, offset, clé, payload si autorisé, exception, application et timestamp. Sans ces informations, le reprocessing devient lent et risqué.
+
+## Schema Registry et compatibilité
+
+Avec Avro et Schema Registry, la compatibilité de schéma devient un contrat entre producteurs et consommateurs. En production, il faut éviter les changements cassants, versionner proprement les événements et tester l'évolution des schémas dans la CI.
+
+Un schéma bien maintenu réduit les surprises lors des déploiements indépendants. C'est un point central dans une architecture event-driven avec plusieurs équipes consommatrices.
+
+## Observabilité et monitoring du lag
+
+Le lag Kafka est un indicateur clé, mais il ne suffit pas. Il faut le corréler avec le débit entrant, les erreurs applicatives, les retries, les DLQ, la latence de traitement et l'état des pods Kubernetes.
+
+Dans Datadog, un dashboard utile affiche les consumer groups critiques, les topics, le lag par partition, les exceptions par type, les redémarrages de pods et les temps de traitement. Les alertes doivent être actionnables, avec un seuil adapté au rythme métier.
+
+## Conclusion
+
+Kafka en production demande de la discipline : contrats de schéma, handlers idempotents, stratégie d'erreur claire, dashboards exploitables et reprocessing maîtrisé. Avec Spring Boot, ces pratiques permettent de construire des consommateurs fiables et maintenables.
+
+  </div>
+</article>
