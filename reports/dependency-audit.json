@@ -40,7 +40,8 @@
         "volar-service-yaml"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "2.17.3"
+      "recommendedFix": "2.17.3",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "@astrojs/mdx",
@@ -60,7 +61,8 @@
         "astro"
       ],
       "status": "unresolved",
-      "recommendedFix": "8.1.1 (major; dependency follows Astro 7)"
+      "recommendedFix": "8.1.1 (major; dependency follows Astro 7)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "@astrojs/tailwind",
@@ -81,7 +83,8 @@
         "tailwindcss"
       ],
       "status": "unresolved",
-      "recommendedFix": "2.1.3 (major/replacement line; not compatible as a drop-in)"
+      "recommendedFix": "2.1.3 (major/replacement line; not compatible as a drop-in)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "astro",
@@ -213,7 +216,8 @@
         "sharp"
       ],
       "status": "unresolved",
-      "recommendedFix": "7.4.2 (Astro 7 major)"
+      "recommendedFix": "7.4.2 (Astro 7 major)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "baseline-browser-mapping",
@@ -244,7 +248,8 @@
         "baseline-browser-mapping process termination on invalid input causes denial of service"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "2.11.30"
+      "recommendedFix": "2.11.30",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "braces",
@@ -275,7 +280,8 @@
         "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns"
       ],
       "status": "unresolved",
-      "recommendedFix": "No patched braces version is published (upstream latest is still 3.0.3)"
+      "recommendedFix": "No patched braces version is published (upstream latest is still 3.0.3)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "browserslist",
@@ -317,7 +323,8 @@
         "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "4.29.4"
+      "recommendedFix": "4.29.4",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "chokidar",
@@ -337,7 +344,8 @@
         "braces"
       ],
       "status": "unresolved",
-      "recommendedFix": "No compatible fix while Tailwind CSS 3 pins chokidar 3.6.0 and braces"
+      "recommendedFix": "No compatible fix while Tailwind CSS 3 pins chokidar 3.6.0 and braces",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "devalue",
@@ -445,7 +453,8 @@
         "devalue: Custom ArrayBuffer revivers can bypass typed-array allocation validation"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "5.9.4"
+      "recommendedFix": "5.9.4",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "esbuild",
@@ -476,7 +485,8 @@
         "esbuild allows arbitrary file read when running the development server on Windows"
       ],
       "status": "unresolved",
-      "recommendedFix": "0.28.1 (requires Astro 7 dependency range)"
+      "recommendedFix": "0.28.1 (requires Astro 7 dependency range)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "fast-glob",
@@ -496,7 +506,8 @@
         "micromatch"
       ],
       "status": "unresolved",
-      "recommendedFix": "No safe tree resolution while micromatch -> braces 3.0.3 remains"
+      "recommendedFix": "No safe tree resolution while micromatch -> braces 3.0.3 remains",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "fast-uri",
@@ -604,7 +615,8 @@
         "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "3.1.9"
+      "recommendedFix": "3.1.9",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "http-cache-semantics",
@@ -635,7 +647,8 @@
         "http-cache-semantics max-stale handling can disclose cross-user cached responses"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "4.3.0"
+      "recommendedFix": "4.3.0",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "js-yaml",
@@ -688,7 +701,8 @@
         "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "4.3.2"
+      "recommendedFix": "4.3.2",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "micromatch",
@@ -708,7 +722,8 @@
         "braces"
       ],
       "status": "unresolved",
-      "recommendedFix": "No patched braces release; Tailwind CSS 4 migration removes affected v3 tree"
+      "recommendedFix": "No patched braces release; Tailwind CSS 4 migration removes affected v3 tree",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "nanoid",
@@ -750,7 +765,8 @@
         "nanoid: custom generators can loop indefinitely when size is zero"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "3.3.20"
+      "recommendedFix": "3.3.20",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "postcss",
@@ -792,7 +808,8 @@
         "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "8.5.31"
+      "recommendedFix": "8.5.31",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "postcss-nested",
@@ -812,7 +829,8 @@
         "postcss-selector-parser"
       ],
       "status": "unresolved",
-      "recommendedFix": "Update parser to 7.1.6 (requires dependency-tree migration)"
+      "recommendedFix": "Update parser to 7.1.6 (requires dependency-tree migration)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "postcss-selector-parser",
@@ -843,7 +861,8 @@
         "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion"
       ],
       "status": "unresolved",
-      "recommendedFix": "7.1.6 (major; Tailwind CSS 4 dependency line)"
+      "recommendedFix": "7.1.6 (major; Tailwind CSS 4 dependency line)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "sharp",
@@ -896,7 +915,8 @@
         "sharp : Vulnerability in librsvg dependency CVE-2026-96889"
       ],
       "status": "unresolved",
-      "recommendedFix": "0.35.5 (requires Astro 7 dependency range)"
+      "recommendedFix": "0.35.5 (requires Astro 7 dependency range)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "smol-toml",
@@ -938,7 +958,8 @@
         "smol-toml: Quadratic-time parse() from parseKey rescanning to end of document on each key line"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "1.9.1"
+      "recommendedFix": "1.9.1",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "source-map-js",
@@ -969,7 +990,8 @@
         "source-map-js allows event-loop denial of service through indexed source-map section offsets"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "1.2.2"
+      "recommendedFix": "1.2.2",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "svgo",
@@ -1022,7 +1044,8 @@
         "SVGO: removeScripts incompletely sanitizes executable HTML in SVG foreignObject elements"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "4.1.0"
+      "recommendedFix": "4.1.0",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "tailwindcss",
@@ -1046,7 +1069,8 @@
         "postcss-selector-parser"
       ],
       "status": "unresolved",
-      "recommendedFix": "4.3.3 (Tailwind CSS 4 major migration)"
+      "recommendedFix": "4.3.3 (Tailwind CSS 4 major migration)",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "vite",
@@ -1121,7 +1145,8 @@
         "Vite: Files outside `server.fs.allow` could be served when project paths match system paths on non-Windows machine"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "6.4.5"
+      "recommendedFix": "6.4.5",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "volar-service-yaml",
@@ -1141,7 +1166,8 @@
         "yaml-language-server"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "0.0.71"
+      "recommendedFix": "0.0.71",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "yaml",
@@ -1172,7 +1198,8 @@
         "yaml is vulnerable to Stack Overflow via deeply nested YAML collections"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "2.8.3"
+      "recommendedFix": "2.8.3",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     },
     {
       "package": "yaml-language-server",
@@ -1192,7 +1219,8 @@
         "yaml"
       ],
       "status": "resolved by npm audit fix",
-      "recommendedFix": "1.23.0"
+      "recommendedFix": "1.23.0",
+      "npmInstallGroup": "dependencies (also reported by npm audit --omit=dev); build/tooling role, no Node production runtime"
     }
   ],
   "scope": "All 12 remaining findings are in build/tooling dependency paths. The Docker runtime image contains only static dist files plus Nginx; Vercel deployment output is static. Advisory applicability still requires review.",
@@ -1201,5 +1229,13 @@
     "source": "GitHub Advisory Database REST API",
     "successful": 55,
     "failed": []
+  },
+  "afterProductionInstallGroup": {
+    "info": 0,
+    "low": 2,
+    "moderate": 3,
+    "high": 6,
+    "critical": 1,
+    "total": 12
   }
 }
