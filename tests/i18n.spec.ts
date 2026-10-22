@@ -117,8 +117,7 @@ test('sitemap and robots expose exactly the bilingual canonical pages', async ({
   const sitemap = await request.get('/sitemap-0.xml');
   expect(sitemap.status()).toBe(200);
   const xml = await sitemap.text();
-  expect([...xml.matchAll(/<loc>/g)].length).toBe(19);
-  expect(xml).toContain(`<loc>${origin}/jamila/</loc>`);
+  expect([...xml.matchAll(/<loc>/g)].length).toBe(18);
   for (const pair of Object.values(routes)) for (const path of Object.values(pair)) expect(xml).toContain(`<loc>${origin}${path}</loc>`);
   for (const path of Object.keys(legacyRoutes)) expect(xml).not.toContain(`<loc>${origin}${path}</loc>`);
   expect([...xml.matchAll(/hreflang="x-default"/g)].length).toBe(18);
@@ -154,29 +153,5 @@ test('all pages satisfy automated WCAG 2.2 AA checks', async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     expect(results.violations, `${path}: ${JSON.stringify(results.violations.map(v => ({id: v.id, nodes: v.nodes.map(n => n.target)})))}`).toEqual([]);
-  }
-});
-
-test('every previously published sitemap URL survives; Jamila and her CV stay intact', async ({ page, request }) => {
-  const inventory = JSON.parse(await readFile('tests/production-inventory.json', 'utf8'));
-  for (const path of inventory.paths) {
-    const response = await request.get(path);
-    expect(response.status(), path).toBe(200);
-    if (legacyRoutes[path]) expect(new URL(response.url()).pathname).toBe(process.env.TEST_HTTP_REDIRECTS ? legacyRoutes[path] : path);
-  }
-  for (const special of inventory.specialPages) {
-    expect((await page.goto(special.path))?.status()).toBe(200);
-    await expect(page.locator('html')).toHaveAttribute('lang', special.lang);
-    await expect(page.locator('h1')).toHaveText('Jamila Ouni');
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', special.canonical);
-    // This separate portfolio has no translated equivalent; do not invent hreflang.
-    await expect(page.locator('link[hreflang]')).toHaveCount(0);
-    const links = await page.locator('a[href^="#"]').evaluateAll(links => links.map(a => a.getAttribute('href')!.slice(1)));
-    for (const id of links) await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
-    const cv = await request.get(special.asset);
-    expect(cv.status()).toBe(200);
-    expect(cv.headers()['content-type']).toContain('application/pdf');
-    expect(createHash('sha256').update(await cv.body()).digest('hex')).toBe(special.assetSha256);
-    expect(await page.locator('a[href="/cv-jamila-ouni.pdf"]').count()).toBeGreaterThan(0);
   }
 });

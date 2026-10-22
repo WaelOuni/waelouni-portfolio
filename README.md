@@ -113,15 +113,7 @@ Navigation, introduction, expériences, dates, compétences, projets, contact, a
 
 Chaque page a un `html lang`, une canonical propre sur `https://waelouni.fr`, trois alternates réciproques `en`, `fr`, `x-default`, des métadonnées Open Graph/Twitter et des données structurées localisées Person, WebSite et WebPage/TechArticle. Les images Open Graph PNG sont localisées et rendues depuis le design SVG existant avec `node scripts/render-og.mjs` ; les SVG sources sont conservés.
 
-Le sitemap contient les 18 pages bilingues et leurs équivalences, ainsi que la page particulière `/jamila/`, sans les anciennes URL redirigées. `robots.txt` est conservé. Aucune modification DNS ou Google Search Console n’est nécessaire ni effectuée.
-
-### Préservation de la page particulière Jamila
-
-La revue du site réellement publié a identifié `/jamila/` et `/cv-jamila-ouni.pdf`, absents de la branche distante `dev` et de son historique. La page a été préservée depuis son HTML public du 22 octobre 2026, avec ses textes, sa présentation, ses données structurées et sa canonical existante `https://jamila.waelouni.fr/`. Son PDF public a été conservé à l’identique. Les assets CSS compilés sont remplacés par le CSS local généré depuis les mêmes classes.
-
-Ce portfolio distinct reste en français ; il n’a pas d’équivalent anglais et aucun hreflang fictif n’est ajouté. Le sous-domaine de sa canonical existante n’était pas joignable pendant la revue : cette configuration préexistante n’a pas été modifiée. Les sources de cette version publiée devront être réconciliées avec le dépôt si elles existent ailleurs.
-
-`tests/production-inventory.json` conserve l’inventaire des dix URL du sitemap actuellement en ligne et l’empreinte du CV Jamila. Un test vérifie que toutes ces URL restent accessibles après la migration, avec les 301 prévues et la préservation du portfolio distinct.
+Le sitemap contient exactement les 18 pages bilingues et leurs équivalences, sans les anciennes URL redirigées. `robots.txt` est conservé. Aucune modification DNS ou Google Search Console n’est nécessaire ni effectuée.
 
 ### CV réels et disponibilité
 
@@ -156,10 +148,16 @@ docker stop wael-i18n-review
 
 Le test Docker valide les 200 des pages, PDF, robots et sitemaps, les six variantes de redirections HTTP 301 sans boucle, les empreintes PDF, les assets référencés par les pages et une véritable 404 pour les URL inconnues. Il s’exécute dans le conteneur et ne nécessite pas d’exposer de port.
 
+### Suppression de contenus et réponses HTTP
+
+Le projet et son build sont exclusivement consacrés au portfolio de Wael Ouni. Une route supprimée et les documents retirés retournent HTTP 404, sans redirection vers l’accueil ni réponse 200 de substitution. Vercel utilise sa résolution statique normale, sans rewrite global ; Nginx utilise `try_files $uri $uri/ =404`. Le fallback 404 conserve un comportement cohérent entre les deux hébergements sans introduire de rendu serveur pour un statut 410.
+
+Les tests négatifs utilisent uniquement `tests/removed-content.json` pour inventorier les anciennes URL et les noms d’assets à interdire. Ils vérifient les statuts sans suivre de redirection, l’absence de liens et de références dans les fichiers de production, les sitemaps et le build, ainsi que l’absence des fichiers retirés dans l’image Docker. Cette fixture ne contient aucun contenu personnel et n’est pas publiée dans les artefacts statiques.
+
 ### Résultats locaux du 22 octobre 2026
 
 - `npm run build` : réussi ; typecheck sans erreur, avertissement ou suggestion.
-- `npm test` : 32 tests réussis, répartis entre desktop et mobile, avec contrôles WCAG automatisés sur les 18 pages.
+- `npm test` : 34 tests réussis, répartis entre desktop et mobile, avec contrôles WCAG automatisés sur les 18 pages.
 - `npm run test:missing-resumes` : réussi pour les builds isolés sans CV puis avec uniquement le CV français.
 - Build Docker et `npm run test:docker` : réussis, y compris les 301, les 200 et l’intégrité des deux PDF.
 - `git diff --check` : réussi.
@@ -171,11 +169,11 @@ Le test Docker valide les 200 des pages, PDF, robots et sitemaps, les six varian
 | Accueil FR mobile | 100 | 100 | 100 | 100 |
 | Accueil FR desktop | 100 | 100 | 100 | 100 |
 
-Ces mesures concernent les accueils sur le preview de production local, avec simulation Lighthouse ; elles ne représentent pas des mesures en production Vercel ni toutes les pages. Le CLS mesuré est de 0 pour les quatre parcours. Les résultats et métriques sont enregistrés dans `reports/lighthouse.json`. La revue finale a confirmé ces scores dans les quatre rapports Lighthouse JSON complets d’origine, sans erreur d’exécution ; ces mesures précèdent la restauration de la page particulière Jamila. Pour reproduire : lancer `npm run preview -- --host 127.0.0.1 --port 4322`, puis `node scripts/lighthouse.mjs` dans un autre terminal. Les rapports JSON complets sont écrits dans un répertoire temporaire dont le chemin est affiché par le script.
+Ces mesures concernent les accueils sur le preview de production local, avec simulation Lighthouse ; elles ne représentent pas des mesures en production Vercel ni toutes les pages. Le CLS mesuré est de 0 pour les quatre parcours. Les résultats et métriques sont enregistrés dans `reports/lighthouse.json`. Les quatre audits ont été relancés sur le build nettoyé, sans erreur d’exécution. Pour reproduire : lancer `npm run preview -- --host 127.0.0.1 --port 4322`, puis `node scripts/lighthouse.mjs` dans un autre terminal. Les rapports JSON complets sont écrits dans un répertoire temporaire dont le chemin est affiché par le script.
 
 ### Déploiement et revue
 
-Branche de travail : `feature/bilingual-en-fr-portfolio`, créée depuis `dev`. La référence distante par défaut est `origin/dev`. La branche de production effective de Vercel doit être confirmée dans les paramètres du projet : elle n’est pas décrite dans le dépôt. GitHub confirme que `dev` est sa seule branche distante et que les trois déploiements historiques Vercel « Production » correspondent à ses commits ; cela justifie `dev` comme cible de PR, mais ne prouve pas le réglage actuel Production → Branch Tracking. Le site publié diffère du contenu GitHub, notamment pour Jamila. Tant que ce réglage et cette divergence ne sont pas confirmés, la PR reste en brouillon et le verdict est NOT READY. Les deux nouveaux CV sont des ajouts utilisateur inclus dans la PR, sans modification de leurs contenus.
+Branche de travail : `feature/bilingual-en-fr-portfolio`, créée depuis `dev`. La référence distante par défaut est `origin/dev`. La branche de production effective de Vercel doit être confirmée dans les paramètres du projet : elle n’est pas décrite dans le dépôt. GitHub confirme que `dev` est la branche par défaut et que les trois déploiements historiques Vercel « Production » correspondent à ses commits ; cela justifie `dev` comme cible de PR, mais ne prouve pas le réglage actuel Production → Branch Tracking. Tant que ce réglage n’est pas confirmé, la PR reste en brouillon et le verdict est NOT READY. Les deux nouveaux CV sont des ajouts utilisateur inclus dans la PR, sans modification de leurs contenus.
 
 Vercel utilise le build statique Astro et les redirections explicites HTTP 301. `trailingSlash: true` normalise les pages avec slash, sans ajouter de slash aux PDF. Les règles sont conformes à la [documentation Vercel](https://vercel.com/docs/project-configuration/vercel-json). Aucun adaptateur SSR n’est nécessaire. Le Dockerfile conserve son build multi-stage Node/Nginx et rend les artefacts publics lisibles par Nginx indépendamment du masque de permissions de la machine hôte.
 

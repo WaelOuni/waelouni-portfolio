@@ -15,7 +15,7 @@ function response(path) {
 }
 execFileSync('docker', ['exec', container, 'nginx', '-t']);
 const paths = [...readFileSync('dist/sitemap-0.xml', 'utf8').matchAll(/<loc>https:\/\/waelouni.fr([^<]+)<\/loc>/g)].map(match => match[1]);
-for (const path of [...paths, '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', '/cv-jamila-ouni.pdf', ...Object.values(resumeFiles).map(file => `/cv/${file.filename}`)]) assert.match(response(path), /HTTP\/1.1 200 OK/, path);
+for (const path of [...paths, '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml', ...Object.values(resumeFiles).map(file => `/cv/${file.filename}`)]) assert.match(response(path), /HTTP\/1.1 200 OK/, path);
 const assets = new Set(['/og-image-en.png', '/og-image-fr.png']);
 for (const path of paths) {
   const html = readFileSync(`dist${path}index.html`, 'utf8');
@@ -35,5 +35,13 @@ for (const file of Object.values(resumeFiles)) {
   const dockerHash = execFileSync('docker', ['exec', container, 'sha256sum', `/usr/share/nginx/html/cv/${file.filename}`], {encoding:'utf8'}).split(' ')[0];
   assert.equal(hash, dockerHash);
 }
+const removed = JSON.parse(readFileSync('tests/removed-content.json', 'utf8'));
+for (const path of [...removed.paths, ...removed.assets]) {
+  const diagnostics = status(path) ?? '';
+  assert.match(diagnostics, /HTTP\/1.1 (404 Not Found|410 Gone)/, path);
+  assert.doesNotMatch(diagnostics, /HTTP\/1.1 30[1278]|Location:/, path);
+}
+const artifactPaths = execFileSync('docker', ['exec', container, 'find', '/usr/share/nginx/html', '-type', 'f'], { encoding: 'utf8' }).toLowerCase();
+for (const term of removed.terms) assert.ok(!artifactPaths.includes(term.toLowerCase()), 'Removed assets must not be packaged');
 assert.match(status('/definitely-missing-page/') ?? '', /404 Not Found/);
-console.log(`PASS: Docker/Nginx serves ${paths.length} pages including preserved special pages, robots, sitemaps, referenced assets and unchanged PDFs; all six legacy URL variants redirect once with HTTP 301; missing routes return 404.`);
+console.log(`PASS: Docker/Nginx serves ${paths.length} bilingual pages, robots, sitemaps, referenced assets and unchanged PDFs; all six legacy URL variants redirect once with HTTP 301; removed content and missing routes return 404.`);

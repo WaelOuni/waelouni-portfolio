@@ -5,7 +5,7 @@
       "lang": "en",
       "device": "mobile",
       "url": "http://127.0.0.1:4322/",
-      "fetchedAt": "2026-10-22T09:55:07.332Z",
+      "fetchedAt": "2026-10-22T13:08:59.631Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -14,9 +14,9 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 892.48885,
-        "largest-contentful-paint": 1056.9777,
-        "total-blocking-time": 27,
+        "first-contentful-paint": 799.9202,
+        "largest-contentful-paint": 1061.8404,
+        "total-blocking-time": 7,
         "cumulative-layout-shift": 0
       },
       "warnings": [],
@@ -26,7 +26,7 @@
       "lang": "en",
       "device": "desktop",
       "url": "http://127.0.0.1:4322/",
-      "fetchedAt": "2026-10-22T09:55:20.851Z",
+      "fetchedAt": "2026-10-22T13:09:14.581Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -35,8 +35,8 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 202.7149,
-        "largest-contentful-paint": 282.7149,
+        "first-contentful-paint": 215.03625,
+        "largest-contentful-paint": 286.0725,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0
       },
@@ -47,7 +47,7 @@
       "lang": "fr",
       "device": "mobile",
       "url": "http://127.0.0.1:4322/fr/",
-      "fetchedAt": "2026-10-22T09:55:33.726Z",
+      "fetchedAt": "2026-10-22T13:09:29.080Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -56,9 +56,9 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 805.74035,
-        "largest-contentful-paint": 1055.4807,
-        "total-blocking-time": 9,
+        "first-contentful-paint": 801.7614999999998,
+        "largest-contentful-paint": 1055.523,
+        "total-blocking-time": 0,
         "cumulative-layout-shift": 0
       },
       "warnings": [],
@@ -68,7 +68,7 @@
       "lang": "fr",
       "device": "desktop",
       "url": "http://127.0.0.1:4322/fr/",
-      "fetchedAt": "2026-10-22T09:55:46.179Z",
+      "fetchedAt": "2026-10-22T13:09:43.737Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -77,8 +77,8 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 202.80220000000003,
-        "largest-contentful-paint": 282.8022,
+        "first-contentful-paint": 217.8501,
+        "largest-contentful-paint": 285.7002,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0
       },
