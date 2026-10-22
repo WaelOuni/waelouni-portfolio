@@ -1,0 +1,455 @@
+{
+  "date": "2026-10-22",
+  "sourceCommit": "38adbe1149eba78dd70dc39c7549be8ca81904b1",
+  "productionCommit": "eb71bd1a3191fca44e806891efa56dbff7788223",
+  "build": "PASS; 0 errors, 0 warnings, 0 hints",
+  "browserTests": 34,
+  "sitemapPages": 18,
+  "ux": [
+    {
+      "width": 320,
+      "path": "/",
+      "overflow": false,
+      "height": 15716,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 320,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 16292,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 320,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 1969,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 320,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 1973,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 375,
+      "path": "/",
+      "overflow": false,
+      "height": 13876,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 375,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 14352,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 375,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 1829,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 375,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 1789,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "overflow": false,
+      "height": 13380,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 390,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 13876,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 390,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 1801,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 390,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 1769,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "overflow": false,
+      "height": 8380,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 768,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 8513,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 768,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 1378,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 768,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 1274,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1024,
+      "path": "/",
+      "overflow": false,
+      "height": 7553,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1024,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 7749,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1024,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1024,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "overflow": false,
+      "height": 7261,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1440,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 7437,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1440,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1440,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1920,
+      "path": "/",
+      "overflow": false,
+      "height": 7261,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1920,
+      "path": "/fr/",
+      "overflow": false,
+      "height": 7437,
+      "cards": 19,
+      "h1": "\nWael Ouni\n",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1920,
+      "path": "/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Let's discuss your fullstack Java project",
+      "inlineJS": 1469
+    },
+    {
+      "width": 1920,
+      "path": "/fr/contact/",
+      "overflow": false,
+      "height": 900,
+      "cards": 1,
+      "h1": "Parlons de votre mission fullstack Java",
+      "inlineJS": 1469
+    }
+  ],
+  "lighthouse": {
+    "scope": "Local production preview; homepages only; simulated Lighthouse mobile/desktop settings. These are not production Vercel scores.",
+    "results": [
+      {
+        "lang": "en",
+        "device": "mobile",
+        "url": "http://127.0.0.1:4322/",
+        "fetchedAt": "2026-10-22T13:36:15.287Z",
+        "lighthouseVersion": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 786.67455,
+          "largest-contentful-paint": 1055.3491,
+          "total-blocking-time": 6,
+          "cumulative-layout-shift": 0
+        },
+        "warnings": [],
+        "failedAccessibilityAudits": []
+      },
+      {
+        "lang": "en",
+        "device": "desktop",
+        "url": "http://127.0.0.1:4322/",
+        "fetchedAt": "2026-10-22T13:36:27.799Z",
+        "lighthouseVersion": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 230.75005,
+          "largest-contentful-paint": 283.5001,
+          "total-blocking-time": 0,
+          "cumulative-layout-shift": 0
+        },
+        "warnings": [],
+        "failedAccessibilityAudits": []
+      },
+      {
+        "lang": "fr",
+        "device": "mobile",
+        "url": "http://127.0.0.1:4322/fr/",
+        "fetchedAt": "2026-10-22T13:36:40.590Z",
+        "lighthouseVersion": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 806.78675,
+          "largest-contentful-paint": 1055.5735,
+          "total-blocking-time": 2,
+          "cumulative-layout-shift": 0
+        },
+        "warnings": [],
+        "failedAccessibilityAudits": []
+      },
+      {
+        "lang": "fr",
+        "device": "desktop",
+        "url": "http://127.0.0.1:4322/fr/",
+        "fetchedAt": "2026-10-22T13:36:54.282Z",
+        "lighthouseVersion": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 224.97655,
+          "largest-contentful-paint": 283.9531,
+          "total-blocking-time": 0,
+          "cumulative-layout-shift": 0
+        },
+        "warnings": [],
+        "failedAccessibilityAudits": []
+      }
+    ]
+  },
+  "production": {
+    "/": {
+      "status": 200,
+      "final": "https://waelouni.fr/",
+      "lang": [
+        "en"
+      ],
+      "title": [
+        "Wael Ouni — Senior Java Backend Engineer | Spring Boot, Kafka &amp; Cloud"
+      ],
+      "bytes": 45219
+    },
+    "/fr/": {
+      "status": 200,
+      "final": "https://waelouni.fr/fr/",
+      "lang": [
+        "fr"
+      ],
+      "title": [
+        "Wael Ouni - Développeur Fullstack Java Senior"
+      ],
+      "bytes": 45867
+    },
+    "/projects/": {
+      "status": 200,
+      "final": "https://waelouni.fr/projects/",
+      "lang": [
+        "en"
+      ],
+      "title": [
+        "Java, Kafka, GCP, Angular and DevOps Projects | Wael Ouni"
+      ],
+      "bytes": 15840
+    },
+    "/parcours/": {
+      "status": 200,
+      "final": "https://waelouni.fr/fr/parcours/",
+      "lang": [
+        "fr"
+      ],
+      "title": [
+        "Parcours Développeur Fullstack Java Senior | Wael Ouni"
+      ],
+      "bytes": 25027
+    }
+  },
+  "pdfHashes": {
+    "cv-wael-ouni.pdf": "3564f7333e7679e65d893aa5bda7a14f2a54339217993a95dc7d214ef740d27a",
+    "Wael_Ouni_CV_Java_Angular_English.pdf": "274942b62b9e5d4196c9bf0d77a36d722fd7ce67042ab5f1f1606bf756f446b1",
+    "Wael_Ouni_CV_Fullstack_Java_Angular_FR.pdf": "a4ae40c5f09776b138631df9e7db311aa7401b5bd89b136195cba94e07d7d3d3"
+  },
+  "priorities": {
+    "critical": [
+      "PR #1 already merged; current Vercel Production Branch Tracking setting not accessible."
+    ],
+    "high": [
+      "Backend positioning diluted by fullstack copy.",
+      "Homepage repeats all six experiences: 19 cards and 13380px at 390px wide.",
+      "Availability stated without current confirmation; contact repeats the stack.",
+      "Mobile navigation requires horizontal scrolling to discover later links.",
+      "Articles omit practical examples and key retry, transaction and metric-cardinality tradeoffs."
+    ],
+    "medium": [
+      "Projects lack context and evidence links.",
+      "Skills are extensive lists without links to demonstrated work.",
+      "Reveal animation introduces 1469 inline JavaScript characters per page.",
+      "No CI workflow; responsive coverage limited to two default viewports.",
+      "No article contents navigation or reading-time estimate."
+    ],
+    "low": [
+      "Footer describes implementation instead of professional identity.",
+      "Social images emphasize fullstack instead of backend."
+    ]
+  },
+  "dimensions": {
+    "professionalCredibility": "Real employers and CVs; remove unconfirmed availability and internal application identifiers.",
+    "positioning": "EN title backend but hero and contact fullstack; align.",
+    "content": "Valid career source; thin case summaries and blog explanations.",
+    "ux": "Clear base palette; excessive repeated cards and long homepage.",
+    "accessibility": "Automated WCAG passes; mobile discoverability and focus/reflow need broader testing.",
+    "mobile": "No document overflow in baseline sampled widths; horizontal nav and crowded 768px contact grid.",
+    "technicalSeo": "18 bilingual pages, reciprocal alternates and redirects covered by passing tests.",
+    "editorialSeo": "Topics relevant, practical depth and internal links limited.",
+    "performance": "4 newly measured local Lighthouse audits 100 in all categories; no field INP data available.",
+    "maintainability": "Static shared views, lightweight dependencies; duplicated article chrome and fallback translation dictionary.",
+    "testQuality": "34 passing browser tests and existing Docker/PDF checks; add viewport, anchor, editorial and CI coverage.",
+    "conversion": "Working mailto and resumes; primary CTA prioritizes history, not contact."
+  },
+  "stockpilot": {
+    "public": true,
+    "commit": "e5a066364c6abe4e88b5b1bb9a98ac0640063d81",
+    "sources": [
+      "README.md",
+      "docs/architecture.md",
+      "frontend/README.md",
+      "src/stockpilot/application/use_cases/finalize_order.py",
+      "src/stockpilot/application/use_cases/catalog_products.py",
+      "tests/test_order_transaction.py"
+    ],
+    "status": "Personal local development/demo project; no verified public demo; no open-source license detected.",
+    "review": "README limitations stale about frontend: repository has Vue pages. Use code and dedicated frontend documentation. Tests inspected, not executed in this portfolio audit."
+  },
+  "deployedCommitTreeMatchesSource": true,
+  "productionCheckScope": "HTTP language/title/status checks on four routes; deployment commit tree comparison, not an exhaustive live-content match."
+}

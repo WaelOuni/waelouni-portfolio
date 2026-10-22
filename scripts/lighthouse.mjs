@@ -1,4 +1,5 @@
 // Start npm run preview -- --host 127.0.0.1 --port 4322 first.
+import { createHash } from 'node:crypto';
 import { chromium } from '@playwright/test';
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -19,12 +20,15 @@ for (const lang of ['en', 'fr']) for (const device of ['mobile', 'desktop']) {
   const report = JSON.parse(readFileSync(output, 'utf8'));
   if (report.runtimeError) throw new Error(JSON.stringify(report.runtimeError));
   const entry = {
-    lang, device, url, fetchedAt: report.fetchTime, lighthouseVersion: report.lighthouseVersion,
+    lang, device, url, htmlSha256: createHash('sha256').update(readFileSync(lang === 'en' ? 'dist/index.html' : 'dist/fr/index.html')).digest('hex'), fetchedAt: report.fetchTime, lighthouseVersion: report.lighthouseVersion,
     scores: Object.fromEntries(Object.entries(report.categories).map(([key, value]) => [key, Math.round(value.score * 100)])),
-    metrics: Object.fromEntries(['first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'cumulative-layout-shift'].map(key => [key, report.audits[key].numericValue])),
+    metrics: Object.fromEntries(['first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'cumulative-layout-shift', 'total-byte-weight', 'bootup-time'].map(key => [key, report.audits[key].numericValue])),
+    savings: Object.fromEntries(['unused-css-rules', 'unused-javascript'].map(key => [key, report.audits[key]?.details?.overallSavingsBytes ?? 0])),
+    fieldData: 'No field INP or CrUX measurement; TBT is a laboratory metric, not INP.',
     warnings: report.runWarnings,
     failedAccessibilityAudits: report.categories.accessibility.auditRefs.filter(ref => report.audits[ref.id].score === 0).map(ref => ref.id)
   };
+  if (entry.scores.performance < 95 || entry.scores.accessibility < 95 || entry.scores['best-practices'] < 100 || entry.scores.seo < 100) throw new Error(`Lighthouse budget failed: ${JSON.stringify(entry)}`);
   results.push(entry);
   console.log(`${lang} ${device}: ${JSON.stringify(entry.scores)}`);
 }

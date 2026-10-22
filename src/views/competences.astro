@@ -1,27 +1,16 @@
 ---
-import { translator, language, localizeData } from "../i18n/utils";
+import { language, translator, localizeData } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SkillCard from '@components/SkillCard.astro';
+import ContactBanner from '@components/ContactBanner.astro';
+import { skillCategories } from '@data/skills';
 const lang = language(Astro.url);
+const c = portfolioCopy(lang);
 const t = translator(lang);
-
-import BaseLayout from "@layouts/BaseLayout.astro";
-import SkillCard from "@components/SkillCard.astro";
-import { skillCategories } from "@data/skills";
+const evidence = ['adeo-supply-chain', 'adeo-supply-chain', 'axa-integration', 'adeo-supply-chain', 'adeo-payments', 'adeo-supply-chain', 'ag2r-modernization', 'enki-portal', 'ag2r-modernization'];
 ---
-
-<BaseLayout
-  title={t("Compétences Java, Spring Boot, Kafka et Fullstack")}
-  description={t("Compétences de Wael Ouni : Java, Spring Boot, Kafka, Kafka Connect, GCP, Kubernetes, Docker, Angular, Vue.js, Datadog, MongoDB, Oracle, CI/CD et sécurité.")}
->
-  <section class="section">
-    <div class="container-page">
-      <div class="mb-12 max-w-3xl">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">{t("Compétences")}</p>
-        <h1 class="text-4xl font-bold text-ink md:text-5xl">{t("Expertise fullstack, cloud et observabilité")}</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-600">{t("Une expertise structurée pour concevoir des microservices Java, traiter des flux Kafka, développer des interfaces Angular/Vue.js, industrialiser les déploiements et piloter l'observabilité.")}</p>
-      </div>
-      <div class="grid gap-5 md:grid-cols-2">
-        {localizeData(skillCategories, lang).map((skill) => <SkillCard heading="h2" skill={skill} />)}
-      </div>
-    </div>
-  </section>
+<BaseLayout title={`${t('Compétences')} — Java, Kafka & Cloud`} description={c('skillsDescription')}>
+  <section class="section"><div class="container-page"><div class="page-intro"><p class="eyebrow">{t('Compétences')}</p><h1 class="page-title">{c('skillsTitle')}</h1><p class="lead">{c('skillsDescription')}</p></div><div class="grid gap-x-16 md:grid-cols-2">{localizeData(skillCategories, lang).map((skill, i) => <SkillCard skill={skill} evidence={evidence[i]} />)}</div></div></section>
+  <ContactBanner />
 </BaseLayout>

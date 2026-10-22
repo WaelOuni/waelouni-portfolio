@@ -1,33 +1,15 @@
 ---
-import { translator, language } from "../i18n/utils";
-const lang = language(Astro.url);
-const t = translator(lang);
-
-import BaseLayout from "@layouts/BaseLayout.astro";
-import ContactCard from "@components/ContactCard.astro";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactCard from '@components/ContactCard.astro';
+import ResumeDownloads from '@components/ResumeDownloads.astro';
+import { language } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+const c = portfolioCopy(language(Astro.url));
 ---
-
-<BaseLayout
-  title={t("Contact mission Fullstack Java Spring Boot Kafka")}
-  description={t("Contacter Wael Ouni pour une mission fullstack Java senior à Lille ou en hybride : Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, Datadog et CI/CD.")}
->
+<BaseLayout title={c('contactLabel')} description={c('contactDescription')}>
   <section class="section">
-    <div class="container-page grid gap-10 md:grid-cols-[1fr_420px] md:items-start">
-      <div>
-        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">{t("Contact")}</p>
-        <h1 class="text-4xl font-bold text-ink md:text-5xl">{t("Parlons de votre mission fullstack Java")}</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-600">{t("J'interviens sur des missions fullstack Java senior : microservices Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, observabilité Datadog, CI/CD, sécurité API et support production.")}</p>
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <div class="rounded-lg border border-line bg-white p-5">
-            <h2 class="text-lg font-bold text-ink">{t("Profil recherché")}</h2>
-            <p class="mt-2 leading-7 text-slate-600">{t("Missions fullstack Java senior, architecture distribuée, cloud, frontend métier et production.")}</p>
-          </div>
-          <div class="rounded-lg border border-line bg-white p-5">
-            <h2 class="text-lg font-bold text-ink">{t("Localisation")}</h2>
-            <p class="mt-2 leading-7 text-slate-600">{t("Lille, France. Disponible en remote ou hybride selon le contexte.")}</p>
-          </div>
-        </div>
-      </div>
+    <div class="container-page grid items-start gap-12 lg:grid-cols-[1.3fr_1fr]">
+      <div><p class="eyebrow">{c('contactLabel')}</p><h1 class="page-title mt-5">{c('contactTitle')}</h1><p class="lead mt-6">{c('contactDescription')}</p><p class="mt-6 max-w-xl text-slate-600">{c('contactPrompt')}</p><div class="mt-8"><ResumeDownloads compact /></div></div>
       <ContactCard />
     </div>
   </section>

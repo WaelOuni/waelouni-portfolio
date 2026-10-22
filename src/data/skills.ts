@@ -28,6 +28,7 @@ export const skillCategories: SkillCategory[] = [
       "Kafka Streams",
       "Kafka Connect",
       "Confluent Cloud",
+      "Avro",
       "Consumer groups",
       "Event-driven architecture",
       "Synchronisation de données"
@@ -51,7 +52,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Testing",
     description: "Qualité logicielle, non-régression et confiance avant mise en production.",
-    items: ["JUnit", "Selenium", "Cucumber", "Gherkin", "Jest", "Tests fonctionnels", "Revues de code"]
+    items: ["JUnit", "Tests d’intégration", "Selenium", "Cucumber", "Gherkin", "Jest", "Tests fonctionnels", "Revues de code"]
   },
   {
     title: "Frontend",

@@ -1,13 +1,17 @@
 ---
 import { resumes } from '../i18n/resumes';
 import { language } from '../i18n/utils';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
 const lang = language(Astro.url);
 const labels = lang === 'en' ? { en: 'Download English Resume', fr: 'Download French CV' } : { en: 'Télécharger le CV anglais', fr: 'Télécharger le CV français' };
 ---
-{resumes[lang] && <a class="inline-flex items-center justify-center rounded-md border border-line bg-white px-5 py-3 font-semibold text-ink hover:text-brand-700" href={resumes[lang]} download>{lang === 'en' ? 'Download Resume' : 'Télécharger mon CV'}</a>}
-{Object.values(resumes).some(Boolean) && <details class="relative text-sm">
-  <summary class="cursor-pointer rounded-md px-3 py-2 font-medium text-brand-700">{lang === 'en' ? 'Resume languages' : 'Langues du CV'}</summary>
-  <ul class="mt-2 space-y-2 rounded-lg border border-line bg-white p-3">
-    {([lang, lang === 'en' ? 'fr' : 'en'] as const).map(locale => resumes[locale] && <li><a class="hover:underline" href={resumes[locale]} download hreflang={locale}>{labels[locale]}</a></li>)}
-  </ul>
-</details>}
+{Object.values(resumes).some(Boolean) && <div class:list={['resume-controls', { 'resume-compact': compact }]}>
+  {resumes[lang] && <a class="button" href={resumes[lang]} download>{lang === 'en' ? 'Download Resume' : 'Télécharger mon CV'}</a>}
+  <details>
+    <summary>{lang === 'en' ? 'Resume languages' : 'Langues du CV'}</summary>
+    <ul class="resume-options">
+      {([lang, lang === 'en' ? 'fr' : 'en'] as const).map(locale => resumes[locale] && <li><a href={resumes[locale]} download hreflang={locale}>{labels[locale]}</a></li>)}
+    </ul>
+  </details>
+</div>}

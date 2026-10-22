@@ -1,27 +1,18 @@
 ---
-import { translator, language, localizeData } from "../i18n/utils";
+import { language, translator, localizeData } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ExperienceCard from '@components/ExperienceCard.astro';
+import ContactBanner from '@components/ContactBanner.astro';
+import { experiences } from '@data/experiences';
 const lang = language(Astro.url);
+const c = portfolioCopy(lang);
 const t = translator(lang);
-
-import BaseLayout from "@layouts/BaseLayout.astro";
-import ExperienceCard from "@components/ExperienceCard.astro";
-import { experiences } from "@data/experiences";
 ---
-
-<BaseLayout
-  title={t("Parcours Développeur Fullstack Java Senior")}
-  description={t("Timeline professionnelle de Wael Ouni : Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, CI/CD, observabilité et systèmes distribués.")}
->
-  <section class="section">
-    <div class="container-page">
-      <div class="mb-12 max-w-3xl">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">{t("Parcours")}</p>
-        <h1 class="text-4xl font-bold text-ink md:text-5xl">{t("Timeline professionnelle")}</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-600">{t("Un parcours fullstack Java senior orienté architectures distribuées, Kafka, microservices, cloud GCP, interfaces Angular/Vue.js, CI/CD et exploitation de systèmes critiques.")}</p>
-      </div>
-      <div class="grid gap-8">
-        {localizeData(experiences, lang).map((experience) => <ExperienceCard experience={experience} />)}
-      </div>
-    </div>
-  </section>
+<BaseLayout title={`${t('Parcours')} — ${c('role')}`} description={c('experienceDescription')}>
+  <section class="section"><div class="container-page">
+    <div class="page-intro"><p class="eyebrow">{t('Parcours')}</p><h1 class="page-title">{c('experienceTitle')}</h1><p class="lead">{c('experienceDescription')}</p></div>
+    {localizeData(experiences, lang).map(experience => <ExperienceCard experience={experience} />)}
+  </div></section>
+  <ContactBanner />
 </BaseLayout>

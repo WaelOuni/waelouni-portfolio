@@ -1,97 +1,56 @@
-# Portfolio Wael Ouni
+# Wael Ouni — portfolio EN/FR
 
-Site web personnel statique pour Wael Ouni, développeur fullstack Java senior spécialisé en Java, Spring Boot, Kafka, microservices, GCP, Kubernetes, Docker, Angular, Vue.js, CI/CD et observabilité.
-
-## Stack
-
-- Astro
-- TypeScript
-- Tailwind CSS
-- MDX
-- Sitemap Astro
-- Docker multi-stage
-- Nginx Alpine
-
-## Installation
-
-```bash
-npm install
-```
+Portfolio professionnel statique de Wael Ouni, ingénieur backend Java senior et consultant freelance à Lille. Le parcours fullstack reste visible dans les expériences ; le positionnement principal est Java, Spring Boot, Kafka et la fiabilité en production.
 
 ## Développement
 
 ```bash
+npm ci
+npx playwright install chromium
 npm run dev
 ```
 
-## Build
-
 ```bash
+npm run check
 npm run build
-```
-
-## Preview
-
-```bash
 npm run preview
+npm test
+npm run test:missing-resumes
 ```
 
-## Docker
+`npm run build` inclut le typecheck. Le site utilise Astro 5.18.2, TypeScript, Tailwind CSS 3, MDX et les Content Collections. Il génère uniquement des fichiers statiques. Les fontes sont système ; aucun framework frontend, police distante, bibliothèque i18n ou JavaScript applicatif n’est livré au navigateur.
 
-```bash
-docker compose up --build
-```
+## Architecture et contenu
 
-Accès local :
+- `src/pages/` : points d’entrée EN/FR ; `src/views/` : vues communes.
+- `src/i18n/routes.ts` : les neuf paires d’URL, utilisées par le sélecteur et le sitemap.
+- `src/i18n/portfolio.ts` : contenu éditorial avec clés stables et présence obligatoire des deux langues vérifiée par TypeScript.
+- `src/i18n/en.ts` et `fr.ts` : traduction des données professionnelles historiques, avec les phrases françaises comme clés. Les anciennes chaînes devenues inutiles ont été retirées.
+- `src/data/` : parcours et études de cas. Les synthèses reprennent les données du dépôt et les CV fournis ; aucun résultat chiffré, titre officiel de lead ou disponibilité immédiate n’est ajouté.
+- `src/content/blog/{en,fr}/` : trois articles dans chaque langue. `BlogArticle.astro` fournit le titre, le sommaire natif, une estimation de lecture à 200 mots/minute et la date de révision réelle. Aucune date de publication inconnue n’est inventée.
+- `src/lib/accessible-code.mjs` : rend les blocs de code défilants accessibles au clavier lors du build.
 
-```text
-http://localhost:8080
-```
+L’accueil présente les expertises principales, deux expériences sélectionnées, StockPilot AI, l’approche de travail, les articles et un appel au contact. Les six missions restent intégralement disponibles sur la page Parcours. Les noms internes d’applications ont été retirés des synthèses publiques. Les fonctions, périodes et technologies existantes sont préservées ; les tests, revues de code et diagnostics de production ajoutés à la synthèse ADEO sont documentés dans les CV réels.
 
-## Déploiement
+Les projets professionnels restent des synthèses de contributions, sans code client ni diagramme propriétaire. Les liens vers les expériences donnent le contexte ; ils ne prétendent pas documenter publiquement l’intégralité d’une architecture client.
 
-### Vercel
+### StockPilot AI : provenance et périmètre
 
-1. Importer le dépôt.
-2. Framework : Astro.
-3. Commande build : `npm run build`.
-4. Dossier de sortie : `dist`.
+Dépôt public vérifié : [WaelOuni/stockpilot-ai](https://github.com/WaelOuni/stockpilot-ai), commit consulté `e5a066364c6abe4e88b5b1bb9a98ac0640063d81`.
 
-### Netlify
+Le README, la documentation d’architecture et du frontend, les cas d’usage catalogue/confirmation et les tests transactionnels ont été consultés. La présentation distingue le catalogue MongoDB, le RAG documentaire pgvector/Ollama, la confirmation explicite et idempotente des commandes, les interfaces Vue 3 et les limites du prototype local. Le code et les tests ont été inspectés ; la suite StockPilot n’a pas été exécutée pendant cette revue du portfolio.
 
-1. Importer le dépôt.
-2. Build command : `npm run build`.
-3. Publish directory : `dist`.
+Aucune démo hébergée publique n’a été vérifiée : aucun bouton de démo n’est proposé. Aucun screenshot de produit, utilisateur, revenu ou résultat commercial n’est inventé. Le dépôt est qualifié de « code public », pas de logiciel sous licence open source : aucune licence n’a été identifiée. Le diagramme HTML est une synthèse de son architecture documentée.
 
-### VPS Docker
+## Design system
 
-1. Copier le projet sur le serveur.
-2. Lancer `docker compose up --build -d`.
-3. Placer un reverse proxy HTTPS devant le service si nécessaire.
+`src/styles/global.css` définit le canvas, les couleurs, l’accent, les largeurs, le rayon et le rythme vertical : `--canvas`, `--ink`, `--muted`, `--accent`, `--line`, `--container`, `--radius`, `--space-section`. Les utilitaires Tailwind conservés utilisent une palette cohérente dans `tailwind.config.mjs`.
 
-## SEO
+Typographie système, titres fluides avec `clamp()`, contenu de lecture limité à 72 caractères environ, liens identifiables et boutons d’au moins 44 px de haut. La navigation mobile et les choix de CV utilisent `details/summary` ; le sélecteur EN/FR utilise des liens ordinaires. Le contenu reste disponible sans JavaScript. Le défilement doux respecte `prefers-reduced-motion` ; les animations d’apparition ont été supprimées.
 
-Le site inclut :
+Les contrôles automatisés portent sur 320, 375, 390, 768, 1024, 1440 et 1920 px dans les deux langues. Ils ne remplacent pas une validation humaine avec lecteurs d’écran et différents navigateurs réels.
 
-- Titles et meta descriptions uniques
-- Canonical automatique
-- Open Graph
-- Twitter card
-- JSON-LD Person
-- JSON-LD WebSite
-- Sitemap via `@astrojs/sitemap`
-- `robots.txt`
-- Structure H1/H2 propre
-
-## Internationalisation EN et FR
-
-L’anglais est servi à la racine et le français sous `/fr/`, sans détection du navigateur ni redirection géographique. Astro 5.18.2 utilise son routage i18n natif avec `defaultLocale: en` et `prefixDefaultLocale: false`.
-
-`src/i18n/config.ts` centralise les langues et le domaine ; `routes.ts` définit les correspondances de pages. Les dictionnaires `en.ts` et `fr.ts` utilisent les phrases françaises existantes comme clés, selon une convention proche de gettext. Les vues dans `src/views/` sont partagées entre les points d’entrée EN/FR. Les composants restent communs. Aucun JavaScript client n’est ajouté pour changer de langue ou télécharger les CV.
-
-Les six articles MDX sont dans la collection Astro `blog`, avec `lang` et `translationKey` validés par schéma. Chaque paire partage une clé, mais possède un contenu intégralement traduit. Les titres et descriptions des listes proviennent de cette collection.
-
-### Correspondance des URL
+## URL et SEO international
 
 | Anglais | Français |
 | --- | --- |
@@ -105,84 +64,86 @@ Les six articles MDX sont dans la collection Astro `blog`, avec `lang` et `trans
 | `/blog/monitoring-datadog-kubernetes/` | `/fr/blog/monitoring-datadog-kubernetes/` |
 | `/blog/architecture-event-driven-java-kafka/` | `/fr/blog/architecture-event-driven-java-kafka/` |
 
-Les anciens chemins `/parcours/`, `/competences/` et `/projets/`, avec ou sans slash final, sont redirigés vers leur version française avec HTTP 301 dans `vercel.json` et `nginx.conf`. Astro fournit également des redirections HTML pour les serveurs statiques et `npm run preview`. Les anciennes URL `/`, `/blog/`, `/contact/` et les trois articles restent des URL publiques et servent désormais l’anglais ; une URL ne peut pas simultanément servir l’anglais et rediriger son ancienne version française.
+L’anglais est servi à la racine, sans détection du navigateur ou de la localisation. Astro utilise son i18n natif avec `defaultLocale: en` et `prefixDefaultLocale: false`. Le sélecteur conserve la page courante.
 
-### Traductions et SEO
+Chaque page possède son `html lang`, son canonical, ses alternates réciproques `en`, `fr`, `x-default`, ses métadonnées Open Graph/Twitter et son JSON-LD localisé Person, WebSite et WebPage/TechArticle. Les articles révisés indiquent `dateModified`, sans fabriquer `datePublished`. Les visuels sociaux PNG sont générés depuis les SVG avec `node scripts/render-og.mjs` et conservent leurs URL.
 
-Navigation, introduction, expériences, dates, compétences, projets, contact, appels à l’action, pied de page, libellés accessibles, textes alternatifs, trois articles complets, métadonnées et données structurées sont localisés. Les informations professionnelles existantes sont conservées. Les noms de clients et technologies ne sont pas traduits.
+Le sitemap contient **18 pages : 9 EN et 9 FR**. Les anciennes routes `/parcours/`, `/competences/` et `/projets/`, avec et sans slash, répondent **301** vers les pages françaises dans `vercel.json` et `nginx.conf`. Le preview Astro utilise la redirection HTML statique ; les tests HTTP permanents s’exécutent dans Nginx. Les anciennes URL `/`, `/blog/`, `/contact/` et des articles servent désormais l’anglais et restent indexables.
 
-Chaque page a un `html lang`, une canonical propre sur `https://waelouni.fr`, trois alternates réciproques `en`, `fr`, `x-default`, des métadonnées Open Graph/Twitter et des données structurées localisées Person, WebSite et WebPage/TechArticle. Les images Open Graph PNG sont localisées et rendues depuis le design SVG existant avec `node scripts/render-og.mjs` ; les SVG sources sont conservés.
+Les routes et documents retirés restent absents. La résolution statique Vercel et le `try_files $uri $uri/ =404` Nginx donnent une véritable 404, sans renvoi vers l’accueil. `tests/removed-content.json` conserve uniquement les identifiants nécessaires aux tests négatifs ; la fixture n’est pas publiée. Aucun ancien contenu n’est restauré.
 
-Le sitemap contient exactement les 18 pages bilingues et leurs équivalences, sans les anciennes URL redirigées. `robots.txt` est conservé. Aucune modification DNS ou Google Search Console n’est nécessaire ni effectuée.
+`robots.txt`, le domaine, les DNS et Google Search Console sont inchangés. Après un déploiement autorisé, vérifier dans Search Console les canonical choisies et les nouvelles URL, et consulter les rapports d’indexation ; le sitemap existant conserve son URL. Aucun résultat de classement ou délai d’indexation n’est promis.
 
-### CV réels et disponibilité
+## CV
 
-| Langue | Fichier source conservé dans `public/` | URL publique |
+| Langue | Source réelle conservée | URL publique |
 | --- | --- | --- |
-| EN | `Wael_Ouni_CV_Java_Angular_English.pdf` | `/cv/wael-ouni-resume-en.pdf` |
-| FR | `Wael_Ouni_CV_Fullstack_Java_Angular_FR.pdf` | `/cv/wael-ouni-cv-fr.pdf` |
+| EN | `public/Wael_Ouni_CV_Java_Angular_English.pdf` | `/cv/wael-ouni-resume-en.pdf` |
+| FR | `public/Wael_Ouni_CV_Fullstack_Java_Angular_FR.pdf` | `/cv/wael-ouni-cv-fr.pdf` |
 
-Le bouton principal télécharge la langue courante ; le menu natif permet de choisir explicitement les deux versions. `scripts/resumes.mjs` prépare des copies strictement identiques avant le développement, la vérification et le build. Les alias PDF générés sont ignorés par Git. Les fichiers originaux et l’ancien `cv-wael-ouni.pdf` restent inchangés.
+`scripts/resumes.mjs` prépare des alias strictement identiques avant le build, ignorés par Git. Le bouton principal suit la langue de la page ; le menu permet de choisir les deux versions. Si une source manque, aucun lien vers ce document n’est rendu. L’ancien `public/cv-wael-ouni.pdf` est aussi conservé. Les trois PDF sont inchangés, avec contrôle SHA-256 contre la baseline.
 
-Si une source manque, son alias obsolète est supprimé et aucun lien vers cette version n’est affiché. Si seule l’autre langue existe, elle reste accessible dans le menu. Si les deux manquent, les contrôles sont masqués. Aucun CV n’est généré ou traduit automatiquement. Les CV récents détaillent davantage le parcours que le portfolio ; aucune de leurs informations supplémentaires n’a été ajoutée aux expériences affichées.
+L’adresse email, le lien GitHub et le lien LinkedIn existants sont conservés. GitHub répond 200 ; LinkedIn bloque le contrôle automatisé avec HTTP 999, donc l’accès effectif au profil doit être vérifié dans un navigateur connecté.
 
-### Validation reproductible
+## Validation et preuves
+
+L’audit a précédé les modifications. [Baseline détaillée](reports/premium-baseline.json) : niveaux critique/haut/moyen/faible, douze dimensions de qualité, build sans erreur, 34 tests réussis, 18 pages et quatre audits Lighthouse relancés. Le commit de production `eb71bd1` et le commit de travail `38adbe1` avaient le même arbre de fichiers. Les réponses publiques de quatre routes ont été contrôlées ; cela ne constitue pas une mesure Lighthouse de production.
+
+[Résultats de la refonte](reports/premium-validation.json) et [mesures Lighthouse](reports/lighthouse.json) :
+
+- Build/typecheck : zéro erreur, avertissement ou suggestion.
+- 56 tests Playwright réussis sur Chromium desktop/mobile : navigation, clavier, menus ouverts, traductions, SEO, sommaires, liens avec ancres, téléchargements et empreintes, routes retirées et sept largeurs.
+- Axe : règles automatisables WCAG 2.2 AA sur les 18 pages et les menus ouverts.
+- Scénarios isolés de CV absents : réussis, sans modifier les PDF sources.
+- Docker/Nginx : 18 pages, fichiers statiques, PDF, six redirections 301 en un seul saut et véritables 404 validés.
+- Quatre audits Lighthouse 13.5.0 des accueils EN/FR, mobile/desktop : **100/100 dans les quatre catégories**, CLS 0, LCP de 0,28 à 1,06 s, TBT de 0 à 12 ms.
+
+Mesures locales en laboratoire : elles ne sont pas des scores Vercel ni des données terrain. Aucun INP terrain n’est disponible ; le TBT ne le remplace pas. Les accueils transférent environ 29,5 ko lors de ces audits. Aucune économie CSS/JS n’a été signalée par les audits concernés, ce qui ne signifie pas qu’aucune règle CSS n’est inutilisée. Les rapports complets temporaires sont hors Git ; le résumé contient l’empreinte HTML du build mesuré.
+
+À 390 px, l’accueil passe de 13 380 à 6 373 px en anglais et de 13 876 à 6 523 px en français. La réduction concerne le contenu répété ; les six expériences restent consultables sur leur page. Aucun gain de conversion n’est prétendu sans données d’usage.
+
+Pour reproduire Lighthouse, lancer le preview sur 4322 puis le script dans un autre terminal :
 
 ```bash
-npm ci
-npx playwright install chromium
-npm run check
-npm run build
-npm test
-npm run test:missing-resumes
+npm run preview -- --host 127.0.0.1 --port 4322
+node scripts/lighthouse.mjs
 ```
 
-Playwright vérifie les 18 pages sur Chromium desktop et mobile : langue par défaut malgré un navigateur français, navigation sans JavaScript, clavier, conservation de la page, contenus, SEO, liens internes, assets, téléchargements, empreintes PDF, robots et sitemap. Axe contrôle les règles automatisables WCAG 2.2 AA ; cela ne remplace pas un audit humain complet. Le test des PDF absents réalise deux builds dans un répertoire temporaire sans modifier les sources originales.
+Le script échoue si Performance/Accessibilité < 95 ou Bonnes pratiques/SEO < 100. Il ne doit pas être lancé en parallèle d’un rebuild.
+
+### Docker et CI
 
 ```bash
-docker build -t wael-portfolio:i18n-review .
-docker run -d --rm --name wael-i18n-review wael-portfolio:i18n-review
+docker build -t wael-portfolio:premium-review .
+docker run -d --rm --name wael-i18n-review wael-portfolio:premium-review
 npm run test:docker
 docker stop wael-i18n-review
 ```
 
-Le test Docker valide les 200 des pages, PDF, robots et sitemaps, les six variantes de redirections HTTP 301 sans boucle, les empreintes PDF, les assets référencés par les pages et une véritable 404 pour les URL inconnues. Il s’exécute dans le conteneur et ne nécessite pas d’exposer de port.
+Le Dockerfile conserve Node 22 pour le build et Nginx pour servir les artefacts. Le contrôle des permissions garantit que Nginx peut lire les fichiers publics. `docker compose up --build` expose le site sur le port 8080.
 
-### Suppression de contenus et réponses HTTP
+`.github/workflows/quality.yml` valide le build, Playwright, les CV absents et Docker sur les PR et les pushes des branches listées. Les actions sont épinglées par commit, le jeton est limité en lecture, et les rapports d’échec sont conservés sept jours. Il n’existe aucune étape de publication ou déploiement. La configuration locale d’un workflow ne prouve pas son exécution distante.
 
-Le projet et son build sont exclusivement consacrés au portfolio de Wael Ouni. Une route supprimée et les documents retirés retournent HTTP 404, sans redirection vers l’accueil ni réponse 200 de substitution. Vercel utilise sa résolution statique normale, sans rewrite global ; Nginx utilise `try_files $uri $uri/ =404`. Le fallback 404 conserve un comportement cohérent entre les deux hébergements sans introduire de rendu serveur pour un statut 410.
+### Alertes de dépendances et limites de livraison
 
-Les tests négatifs utilisent uniquement `tests/removed-content.json` pour inventorier les anciennes URL et les noms d’assets à interdire. Ils vérifient les statuts sans suivre de redirection, l’absence de liens et de références dans les fichiers de production, les sitemaps et le build, ainsi que l’absence des fichiers retirés dans l’image Docker. Cette fixture ne contient aucun contenu personnel et n’est pas publiée dans les artefacts statiques.
+L’audit complémentaire du 22 octobre 2026 (`npm audit --omit=dev`) signale **28 paquets affectés** : 1 critique, 17 élevés, 8 modérés et 2 faibles. [Inventaire et correctifs proposés](reports/dependency-audit.json). L’arbre contient les outils de build ; il ne s’agit pas de 28 vulnérabilités exploitables démontrées dans le site statique.
 
-### Résultats locaux du 22 octobre 2026
+L’alerte critique Astro concerne le traitement d’un AVIF malveillant par Sharp ([avis officiel](https://github.com/advisories/GHSA-26w7-cxv4-gfx2)). Le portfolio ne reçoit pas d’images utilisateur et ne déploie pas de serveur d’optimisation. Cette observation limite l’exposition connue ; elle ne remplace pas la qualification de chaque alerte de la chaîne de build.
 
-- `npm run build` : réussi ; typecheck sans erreur, avertissement ou suggestion.
-- `npm test` : 34 tests réussis, répartis entre desktop et mobile, avec contrôles WCAG automatisés sur les 18 pages.
-- `npm run test:missing-resumes` : réussi pour les builds isolés sans CV puis avec uniquement le CV français.
-- Build Docker et `npm run test:docker` : réussis, y compris les 301, les 200 et l’intégrité des deux PDF.
-- `git diff --check` : réussi.
+Astro 5.18.2 est la dernière version 5.x publiée consultée. Les correctifs des avis Astro nécessitent une version majeure plus récente et une migration de l’intégration Tailwind. Aucun `npm audit fix --force` ni remplacement majeur silencieux n’a été effectué. La qualification et la mise à jour de cet outillage restent nécessaires avant validation de production.
 
-| Lighthouse 13.5.0 | Performance | Accessibilité | Bonnes pratiques | SEO |
-| --- | --- | --- | --- | --- |
-| Accueil EN mobile | 100 | 100 | 100 | 100 |
-| Accueil EN desktop | 100 | 100 | 100 | 100 |
-| Accueil FR mobile | 100 | 100 | 100 | 100 |
-| Accueil FR desktop | 100 | 100 | 100 | 100 |
+### État Git et production
 
-Ces mesures concernent les accueils sur le preview de production local, avec simulation Lighthouse ; elles ne représentent pas des mesures en production Vercel ni toutes les pages. Le CLS mesuré est de 0 pour les quatre parcours. Les résultats et métriques sont enregistrés dans `reports/lighthouse.json`. Les quatre audits ont été relancés sur le build nettoyé, sans erreur d’exécution. Pour reproduire : lancer `npm run preview -- --host 127.0.0.1 --port 4322`, puis `node scripts/lighthouse.mjs` dans un autre terminal. Les rapports JSON complets sont écrits dans un répertoire temporaire dont le chemin est affiché par le script.
+Branche de travail conservée : `feature/bilingual-en-fr-portfolio`. La PR #1 a été fusionnée par ailleurs le 22 octobre 2026 à 13:22 UTC ; GitHub enregistre ensuite un déploiement Production du commit `eb71bd1` de `dev`. Le présent travail n’a effectué aucune fusion ni commande de déploiement.
 
-### Déploiement et revue
+Cette PR fermée ne peut pas recevoir la refonte comme nouvelle révision à fusionner. La suite de la revue nécessite soit une nouvelle PR autorisée, soit l’examen des modifications locales. Le réglage actuel Vercel Production → Branch Tracking n’est pas accessible dans cette session ; `dev` est attesté par les déploiements, pas par la lecture de ce réglage. Le garde-fou `git.deploymentEnabled` reste désactivé pour la branche de travail existante.
 
-Branche de travail : `feature/bilingual-en-fr-portfolio`, créée depuis `dev`. La référence distante par défaut est `origin/dev`. La branche de production effective de Vercel doit être confirmée dans les paramètres du projet : elle n’est pas décrite dans le dépôt. GitHub confirme que `dev` est la branche par défaut et que les trois déploiements historiques Vercel « Production » correspondent à ses commits ; cela justifie `dev` comme cible de PR, mais ne prouve pas le réglage actuel Production → Branch Tracking. Tant que ce réglage n’est pas confirmé, la PR reste en brouillon et le verdict est NOT READY. Les deux nouveaux CV sont des ajouts utilisateur inclus dans la PR, sans modification de leurs contenus.
+Verdict de livraison : **NOT READY** tant que les alertes de dépendances n’ont pas été traitées/qualifiées et que le réglage Vercel n’a pas été confirmé. Après autorisation de déploiement, exécuter `TEST_BASE_URL=https://… TEST_HTTP_REDIRECTS=1 npm test` et vérifier les PDF ainsi que les statuts des anciennes URL sur l’hébergement réel.
 
-Vercel utilise le build statique Astro et les redirections explicites HTTP 301. `trailingSlash: true` normalise les pages avec slash, sans ajouter de slash aux PDF. Les règles sont conformes à la [documentation Vercel](https://vercel.com/docs/project-configuration/vercel-json). Aucun adaptateur SSR n’est nécessaire. Le Dockerfile conserve son build multi-stage Node/Nginx et rend les artefacts publics lisibles par Nginx indépendamment du masque de permissions de la machine hôte.
+## Pistes éditoriales futures — non publiées
 
-La branche `feature/bilingual-en-fr-portfolio` désactive ses déploiements Git automatiques via `git.deploymentEnabled` dans `vercel.json`, afin de permettre la publication de la PR sans preview volontaire. Ce blocage est limité à cette branche. Aucune fusion ou commande de déploiement ne doit être effectuée pendant la revue. Après validation d’un déploiement, exécuter les tests sur son URL avec `TEST_BASE_URL=https://… TEST_HTTP_REDIRECTS=1 npm test`, puis contrôler les deux PDF et les six anciennes URL sur Vercel. La disponibilité réelle sur Vercel n’est pas attestée par les tests locaux.
+- Tester les fenêtres d’échec d’un consommateur Kafka : commit en base, acquittement et reprise.
+- Lire un incident à travers logs, traces et métriques sans augmenter inutilement leur cardinalité.
+- Délimiter les responsabilités d’un assistant IA : recherche documentaire, intention et confirmation métier.
 
-### Proposition de Pull Request
-
-Titre : `Add complete English/French localization with English as default`
-
-Le portfolio français disposait d’une seule langue. Cette modification sert l’anglais à la racine et conserve la version française sous `/fr/`, avec navigation entre pages équivalentes, trois articles intégralement traduits et accès aux deux CV réels sans modifier leurs contenus.
-
-L’implémentation conserve Astro statique et les composants visuels existants, ajoute les canonical/hreflang et métadonnées localisées, un sitemap bilingue et des redirections permanentes Vercel/Nginx pour les anciens chemins français. La validation couvre build/typecheck, parcours navigateur desktop/mobile, règles WCAG automatisées, liens internes, intégrité PDF, documents absents et exécution Docker/Nginx. La vérification sur un déploiement Vercel reste à effectuer après autorisation.
+Ces propositions ne sont pas des articles ajoutés au site et n’impliquent aucune expérience client supplémentaire.

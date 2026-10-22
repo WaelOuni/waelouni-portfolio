@@ -24,8 +24,8 @@ for (const [key, pair] of Object.entries(routes)) {
       expect((await request.get(`/og-image-${lang}.png`)).status()).toBe(200);
       await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index, follow');
-      await expect(page.locator('header')).toContainText(lang === 'en' ? 'Skills' : 'Compétences');
-      await expect(page.locator('footer')).toContainText(lang === 'en' ? 'SEO-optimized static Astro portfolio.' : 'Portfolio statique Astro optimisé SEO.');
+      await expect(page.getByRole('banner')).toContainText(lang === 'en' ? 'Skills' : 'Compétences');
+      await expect(page.locator('footer')).toContainText(lang === 'en' ? 'Java backend engineering · Lille, France' : 'Ingénierie backend Java · Lille, France');
       const structured = await page.locator('script[type="application/ld+json"]').allTextContents();
       const document = structured.map(text => JSON.parse(text)).find(item => ['WebPage', 'TechArticle'].includes(item['@type']));
       expect(document.inLanguage).toBe(lang);

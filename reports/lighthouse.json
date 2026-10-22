@@ -5,7 +5,8 @@
       "lang": "en",
       "device": "mobile",
       "url": "http://127.0.0.1:4322/",
-      "fetchedAt": "2026-10-22T13:08:59.631Z",
+      "htmlSha256": "bf05d96cfa6e1a9c706ef73573d6711fd56ffb234fcbdfb373b193888cdd9a90",
+      "fetchedAt": "2026-10-22T14:35:01.916Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -14,11 +15,18 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 799.9202,
-        "largest-contentful-paint": 1061.8404,
-        "total-blocking-time": 7,
-        "cumulative-layout-shift": 0
+        "first-contentful-paint": 1052.1284,
+        "largest-contentful-paint": 1064.2568,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "total-byte-weight": 29356,
+        "bootup-time": 31.28
       },
+      "savings": {
+        "unused-css-rules": 0,
+        "unused-javascript": 0
+      },
+      "fieldData": "No field INP or CrUX measurement; TBT is a laboratory metric, not INP.",
       "warnings": [],
       "failedAccessibilityAudits": []
     },
@@ -26,7 +34,8 @@
       "lang": "en",
       "device": "desktop",
       "url": "http://127.0.0.1:4322/",
-      "fetchedAt": "2026-10-22T13:09:14.581Z",
+      "htmlSha256": "bf05d96cfa6e1a9c706ef73573d6711fd56ffb234fcbdfb373b193888cdd9a90",
+      "fetchedAt": "2026-10-22T14:35:15.470Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -35,11 +44,18 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 215.03625,
-        "largest-contentful-paint": 286.0725,
+        "first-contentful-paint": 261.15020000000004,
+        "largest-contentful-paint": 288.3004,
         "total-blocking-time": 0,
-        "cumulative-layout-shift": 0
+        "cumulative-layout-shift": 0,
+        "total-byte-weight": 29356,
+        "bootup-time": 4.338999999999999
       },
+      "savings": {
+        "unused-css-rules": 0,
+        "unused-javascript": 0
+      },
+      "fieldData": "No field INP or CrUX measurement; TBT is a laboratory metric, not INP.",
       "warnings": [],
       "failedAccessibilityAudits": []
     },
@@ -47,7 +63,8 @@
       "lang": "fr",
       "device": "mobile",
       "url": "http://127.0.0.1:4322/fr/",
-      "fetchedAt": "2026-10-22T13:09:29.080Z",
+      "htmlSha256": "ed435125cb9db21d1cfe8b6f279fadcac5a0f3cbde6afbbf35795e7be23bf673",
+      "fetchedAt": "2026-10-22T14:35:28.458Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -56,11 +73,18 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 801.7614999999998,
-        "largest-contentful-paint": 1055.523,
+        "first-contentful-paint": 1016.29555,
+        "largest-contentful-paint": 1056.5911,
         "total-blocking-time": 0,
-        "cumulative-layout-shift": 0
+        "cumulative-layout-shift": 0,
+        "total-byte-weight": 29536,
+        "bootup-time": 30.779999999999994
       },
+      "savings": {
+        "unused-css-rules": 0,
+        "unused-javascript": 0
+      },
+      "fieldData": "No field INP or CrUX measurement; TBT is a laboratory metric, not INP.",
       "warnings": [],
       "failedAccessibilityAudits": []
     },
@@ -68,7 +92,8 @@
       "lang": "fr",
       "device": "desktop",
       "url": "http://127.0.0.1:4322/fr/",
-      "fetchedAt": "2026-10-22T13:09:43.737Z",
+      "htmlSha256": "ed435125cb9db21d1cfe8b6f279fadcac5a0f3cbde6afbbf35795e7be23bf673",
+      "fetchedAt": "2026-10-22T14:35:42.224Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -77,11 +102,18 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 217.8501,
-        "largest-contentful-paint": 285.7002,
+        "first-contentful-paint": 270.73285000000004,
+        "largest-contentful-paint": 285.4657,
         "total-blocking-time": 0,
-        "cumulative-layout-shift": 0
+        "cumulative-layout-shift": 0,
+        "total-byte-weight": 29536,
+        "bootup-time": 5.784999999999998
       },
+      "savings": {
+        "unused-css-rules": 0,
+        "unused-javascript": 0
+      },
+      "fieldData": "No field INP or CrUX measurement; TBT is a laboratory metric, not INP.",
       "warnings": [],
       "failedAccessibilityAudits": []
     }

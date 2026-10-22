@@ -7,14 +7,14 @@ export default {
         brand: {
           50: "#EFF6FF",
           100: "#DBEAFE",
-          500: "#2563EB",
+          500: "#204FBB",
           600: "#1D4ED8",
           700: "#1E40AF"
         },
-        ink: "#0F172A",
+        ink: "#12253D",
         muted: "#64748B",
-        line: "#E2E8F0",
-        canvas: "#F8FAFC"
+        line: "#DCE2E9",
+        canvas: "#FAFAF9"
       },
       boxShadow: {
         soft: "0 18px 55px rgba(15, 23, 42, 0.08)"

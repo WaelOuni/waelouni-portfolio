@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-22",
+  "scope": "Local production build; no deployment by this change",
+  "build": {
+    "result": "PASS",
+    "errors": 0,
+    "warnings": 0,
+    "hints": 0,
+    "pages": 18
+  },
+  "browser": {
+    "result": "PASS",
+    "count": 56,
+    "engines": [
+      "Chromium desktop",
+      "Chromium mobile emulation"
+    ],
+    "widths": [
+      320,
+      375,
+      390,
+      768,
+      1024,
+      1440,
+      1920
+    ],
+    "coverage": [
+      "18 page pairs/language metadata checks",
+      "no JavaScript language/menu/resume controls",
+      "keyboard focus",
+      "automated WCAG 2.2 AA including expanded controls",
+      "internal links and fragments",
+      "article reading metadata/TOC/code regions",
+      "unchanged PDF hashes",
+      "retired route and asset negative checks"
+    ]
+  },
+  "missingResumes": "PASS: none and FR only",
+  "docker": "PASS: 18 pages/assets/PDFs, six single-hop 301 variants, retired content and unknown routes 404",
+  "sitemap": {
+    "total": 18,
+    "en": 9,
+    "fr": 9
+  },
+  "ux": [
+    {
+      "width": 320,
+      "path": "/",
+      "height": 7078,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 320,
+      "path": "/fr/",
+      "height": 7034,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 375,
+      "path": "/",
+      "height": 6527,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 375,
+      "path": "/fr/",
+      "height": 6628,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "height": 6373,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 390,
+      "path": "/fr/",
+      "height": 6523,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "height": 4380,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 768,
+      "path": "/fr/",
+      "height": 4608,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1024,
+      "path": "/",
+      "height": 4128,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1024,
+      "path": "/fr/",
+      "height": 4201,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "height": 4659,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1440,
+      "path": "/fr/",
+      "height": 4705,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1920,
+      "path": "/",
+      "height": 4662,
+      "overflow": false,
+      "executableScripts": 0
+    },
+    {
+      "width": 1920,
+      "path": "/fr/",
+      "height": 4708,
+      "overflow": false,
+      "executableScripts": 0
+    }
+  ],
+  "lighthouseSummary": "reports/lighthouse.json",
+  "fieldINP": null,
+  "securityReview": "reports/dependency-audit.json",
+  "releaseVerdict": "NOT READY",
+  "remaining": [
+    "Qualify/remediate existing dependency advisories; patched Astro requires major toolchain migration.",
+    "Confirm actual Vercel Production Branch Tracking.",
+    "PR #1 already merged; new draft PR authorization pending.",
+    "LinkedIn blocks automated HTTP check (999); manual profile verification.",
+    "Human assistive-technology and cross-browser review remains advisable; no claim of full WCAG conformance."
+  ]
+}

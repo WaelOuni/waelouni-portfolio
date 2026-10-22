@@ -2,19 +2,16 @@
 title: "Monitoring Datadog pour microservices Kubernetes"
 description: "Mettre en place un monitoring Datadog utile pour microservices Kubernetes : logs, metrics, traces, pods, restarts, dashboards et alerting."
 lang: fr
+updatedAt: "2026-10-22"
 translationKey: monitoring-datadog-kubernetes
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Monitoring Datadog pour microservices Kubernetes
 
 Un dashboard Datadog efficace ne cherche pas à afficher toutes les métriques possibles. Il répond à des questions de production : l'application est-elle disponible, traite-t-elle correctement la charge, où se situe l'incident et quelle action mener ensuite ?
 
 ## Logs, metrics et traces
 
-Les logs donnent le contexte précis d'une erreur. Les metrics montrent une tendance et permettent l'alerting. Les traces aident à comprendre un parcours distribué entre plusieurs services. Les trois signaux doivent être corrélés par environnement, service, version, pod et identifiants métier lorsque c'est possible.
+Les logs donnent le contexte précis d'une erreur. Les metrics montrent une tendance et permettent l'alerting. Les traces aident à comprendre un parcours distribué entre plusieurs services. Les corréler par environnement, service et version. Utiliser le contexte des pods pour le diagnostic d’infrastructure et réserver les identifiants métier aux journaux ou traces protégés, sans les utiliser comme tags de métriques.
 
 Pour un microservice Spring Boot, les métriques HTTP, JVM, base de données, Kafka et Kubernetes apportent une vision complète. Les traces sont particulièrement utiles pour identifier une dépendance lente ou instable.
 
@@ -36,9 +33,39 @@ Une alerte doit être rare, claire et actionnable. Trop d'alertes créent du bru
 
 Les alertes importantes concernent les erreurs élevées, la latence anormale, le lag Kafka persistant, les DLQ qui augmentent, les pods qui redémarrent et les ressources proches de leurs limites.
 
+
+## Corréler les signaux sans cardinalité incontrôlée
+
+Utiliser `env`, `service` et `version` de façon cohérente dans les métadonnées de déploiement et l’instrumentation. Ces labels illustratifs de template de pod explicitent l’identité du déploiement ; la découverte par l’Agent et le traçage applicatif restent à configurer :
+
+```yaml
+metadata:
+  labels:
+    tags.datadoghq.com/env: "staging"
+    tags.datadoghq.com/service: "orders-example"
+    tags.datadoghq.com/version: "example-build"
+```
+
+Il s’agit des clés du [marquage unifié des services](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/). Éviter les identifiants de requête, client ou commande dans les tags de métriques : leurs valeurs non bornées multiplient les séries. Réserver les identifiants nécessaires au diagnostic aux journaux ou traces expurgés et à accès contrôlé. Voir les [recommandations Datadog](https://docs.datadoghq.com/getting_started/tagging/).
+
+## Distinguer readiness et liveness
+
+Un échec de readiness retire le pod du trafic normal du Service, sans redémarrer à lui seul le conteneur. La liveness détecte un processus bloqué et peut déclencher un redémarrage. Une startup probe laisse le temps à une application lente de démarrer avant ces contrôles. Ces distinctions figurent dans la [documentation Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/probes/).
+
+Une panne de base partagée ne doit pas provoquer un échec de liveness sur toutes les répliques : elle deviendrait une cascade de redémarrages. Vérifier la finalité de chaque sonde, pas seulement son URL.
+
+## Une séquence de diagnostic d’incident
+
+Prenons une hausse illustrative de latence après un déploiement :
+
+1. Comparer les services, versions et périodes affectés. Vérifier le volume et les erreurs avant d’attribuer la cause à la livraison.
+2. Examiner les distributions de latence et les traces pour localiser une dépendance lente. Une moyenne peut masquer quelques requêtes très lentes.
+3. Corréler avec les redémarrages, la limitation CPU, la mémoire et la pression sur les pools de connexions.
+4. Si Kafka intervient, consulter le lag par partition et l’activité des consommateurs. Ajouter des répliques ne peut pas augmenter le parallélisme au-delà des partitions assignables.
+5. Choisir une action réversible, puis vérifier la reprise technique et le traitement effectif des opérations métier.
+
+Une alerte doit renvoyer vers un responsable, un guide d’intervention et un tableau de bord. Définir d’abord un objectif côté utilisateur, puis adapter les alertes d’erreur durable et de latence. Une absence de télémétrie doit être distinguée d’une défaillance confirmée du service.
+
 ## Conclusion
 
 Datadog devient puissant quand il reflète le fonctionnement réel du produit. Pour des microservices Kubernetes, l'objectif est de réduire le temps de diagnostic, sécuriser les mises en production et donner aux équipes une lecture fiable de la production.
-
-  </div>
-</article>

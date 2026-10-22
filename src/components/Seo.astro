@@ -1,4 +1,5 @@
 ---
+import { portfolioCopy } from "../i18n/portfolio";
 import { language, routeKey } from "../i18n/utils";
 import { routes } from "../i18n/routes";
 const lang = language(Astro.url);
@@ -9,6 +10,7 @@ const site = Astro.site ?? new URL("https://waelouni.fr");
 export interface Props {
   title: string;
   description: string;
+  modifiedAt?: string;
   canonical?: string;
   type?: "website" | "article";
 }
@@ -27,7 +29,8 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Wael Ouni",
-  jobTitle: lang === "en" ? "Senior Fullstack Java Developer" : "Développeur Fullstack Java Senior",
+  jobTitle: portfolioCopy(lang)("role"),
+  sameAs: ["https://github.com/WaelOuni", "https://www.linkedin.com/in/wael-ouni-fullstack-developer/"],
   email: "mailto:waelounie@gmail.com",
   address: {
     "@type": "PostalAddress",
@@ -73,6 +76,7 @@ const websiteJsonLd = {
 <meta property="og:locale:alternate" content={lang === "en" ? "fr_FR" : "en_GB"} />
 <meta name="robots" content="index, follow" />
 <meta property="og:type" content={type} />
+{type === "article" && Astro.props.modifiedAt && <meta property="article:modified_time" content={Astro.props.modifiedAt} />}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
@@ -90,4 +94,4 @@ const websiteJsonLd = {
 <script is:inline type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
 <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify({"@context": "https://schema.org", "@type": type === "article" ? "TechArticle" : "WebPage", name: fullTitle, headline: fullTitle, description, url: canonical, inLanguage: lang, author: {"@type": "Person", name: "Wael Ouni"}})} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify({"@context": "https://schema.org", "@type": type === "article" ? "TechArticle" : "WebPage", ...(type === "article" && Astro.props.modifiedAt ? {dateModified: Astro.props.modifiedAt} : {}), name: fullTitle, headline: fullTitle, description, url: canonical, inLanguage: lang, author: {"@type": "Person", name: "Wael Ouni"}})} />

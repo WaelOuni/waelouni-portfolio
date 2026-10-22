@@ -2,13 +2,10 @@
 title: "Kafka avec Spring Boot en production : bonnes pratiques"
 description: "Guide pratique pour exploiter Kafka avec Spring Boot en production : consumer groups, idempotence, retry, DLQ, observabilité, Schema Registry et monitoring du lag."
 lang: fr
+updatedAt: "2026-10-22"
 translationKey: kafka-spring-boot-production
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Kafka avec Spring Boot en production : bonnes pratiques
 
 Kafka est un excellent socle pour découpler des systèmes, absorber de la charge et diffuser des événements métier. En production, la difficulté n'est pas seulement de consommer un topic : il faut garantir un comportement lisible en cas d'erreur, mesurer le retard, rejouer proprement et éviter les effets de bord.
 
@@ -42,9 +39,34 @@ Le lag Kafka est un indicateur clé, mais il ne suffit pas. Il faut le corréler
 
 Dans Datadog, un dashboard utile affiche les consumer groups critiques, les topics, le lag par partition, les exceptions par type, les redémarrages de pods et les temps de traitement. Les alertes doivent être actionnables, avec un seuil adapté au rythme métier.
 
+
+## Choisir les garanties avant de configurer les retries
+
+Un topic de retry laisse avancer les autres messages, mais le traitement en échec peut alors terminer après des événements plus récents. Si l’ordre compte pour une clé métier, décidez s’il faut bloquer, suspendre ou réconcilier avant d’activer cette stratégie. Spring Kafka documente ce [compromis sur l’ordre](https://docs.spring.io/spring-kafka/reference/retrytopic/how-the-pattern-works.html).
+
+L’idempotence du producteur ne rend pas idempotent un appel HTTP ou une écriture en base du consommateur. Les transactions Kafka peuvent coordonner messages et offsets Kafka ; un effet externe nécessite sa propre stratégie de cohérence. Voir le [périmètre transactionnel de Spring Kafka](https://docs.spring.io/spring-kafka/reference/kafka/exactly-once.html).
+
+## Un garde-fou concret contre les doublons
+
+Pour un consommateur adossé à une base, enregistrer l’identifiant de l’événement et la modification métier dans la **même transaction de base de données**. Cet extrait PostgreSQL illustratif suppose une clé primaire sur `processed_event.event_id` :
+
+```sql
+INSERT INTO processed_event (event_id)
+VALUES ('example-event-42')
+ON CONFLICT (event_id) DO NOTHING
+RETURNING event_id;
+```
+
+Appliquer la modification métier uniquement si une ligne est retournée. Valider la transaction avant d’acquitter le message ; annuler les deux écritures en cas d’échec. Si le processus s’arrête après le commit en base mais avant celui de l’offset, la nouvelle insertion ne fait rien. L’identifiant doit rester stable au rejeu. Voir le [contrat INSERT de PostgreSQL](https://www.postgresql.org/docs/current/sql-insert.html).
+
+Cet exemple ne protège pas un paiement ou un email émis hors de cette transaction. Ces effets demandent une API aval idempotente ou une outbox persistante. La configuration d’acquittement des offsets doit rester cohérente avec le mode unitaire ou par lot du listener.
+
+## Tester le chemin de reprise
+
+Avant livraison, tester un doublon, un message mal formé, une base indisponible et un redémarrage après commit en base. Vérifier l’ordre requis, la remontée d’un échec de publication en DLQ et la personne habilitée à autoriser le rejeu. Un test du seul parcours nominal ne couvre pas ces fenêtres d’échec.
+
+Pour les schémas, distinguer compatibilité descendante et transitive : une validation limitée au dernier schéma peut ignorer les événements anciens encore conservés. Préparer ensemble le déploiement des lecteurs et des producteurs. Le [guide de compatibilité Schema Registry](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html) détaille les modes disponibles.
+
 ## Conclusion
 
 Kafka en production demande de la discipline : contrats de schéma, handlers idempotents, stratégie d'erreur claire, dashboards exploitables et reprocessing maîtrisé. Avec Spring Boot, ces pratiques permettent de construire des consommateurs fiables et maintenables.
-
-  </div>
-</article>
