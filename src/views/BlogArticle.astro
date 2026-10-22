@@ -1,8 +1,30 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { portfolioCopy } from '../i18n/portfolio';
+import { routes } from '../i18n/routes';
+import { readingMinutes } from '../lib/blog';
 interface Props { post: CollectionEntry<'blog'> }
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const lang = post.data.lang;
+const c = portfolioCopy(lang);
+const updated = post.data.updatedAt;
+const dateLabel = updated && new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : 'fr-FR', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(updated));
 ---
-<BaseLayout title={post.data.title} description={post.data.description} type="article"><Content /></BaseLayout>
+<BaseLayout title={post.data.title} description={post.data.description} type="article" modifiedAt={updated}>
+  <article class="section">
+    <div class="container-page">
+      <header class="mb-12 max-w-4xl">
+        <a class="text-link mb-6 text-sm" href={routes.blog[lang]}>← {c('backBlog')}</a>
+        <h1 class="page-title max-w-none">{post.data.title}</h1>
+        <p class="lead mt-6">{post.data.description}</p>
+        <p class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600"><span>Wael Ouni</span><span>{readingMinutes(post)} {c('reading')}</span>{updated && <span>{c('updated')} <time datetime={updated}>{dateLabel}</time></span>}</p>
+      </header>
+      <div class="article-layout">
+        <nav class="article-toc" aria-label={c('contents')}><p class="font-semibold text-ink">{c('contents')}</p><ol class="mt-3">{headings.filter(h => h.depth === 2).map(h => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>
+        <div class="prose-content"><Content /><aside class="mt-12 border-t border-line pt-7"><h2>{c('related')}</h2><ul><li><a href={routes.skills[lang]}>{c('skillsTitle')}</a></li><li><a href={routes.projects[lang]}>{c('projectsTitle')}</a></li></ul></aside></div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

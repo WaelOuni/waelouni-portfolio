@@ -2,6 +2,8 @@
 import { en } from './en';
 export const fr: Record<string, string> = {
   ...Object.fromEntries(Object.keys(en).map(key => [key, key])),
+  'Frontend': 'Fullstack',
+  'Backend': 'Ingénierie backend',
   'Data': 'Données',
   'Testing': 'Tests',
   'Soft skills': 'Compétences relationnelles',

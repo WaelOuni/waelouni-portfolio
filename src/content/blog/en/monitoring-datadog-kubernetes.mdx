@@ -2,19 +2,16 @@
 title: "Datadog monitoring for Kubernetes microservices"
 description: "Set up useful Datadog monitoring for Kubernetes microservices: logs, metrics, traces, pods, restarts, dashboards and alerting."
 lang: en
+updatedAt: "2026-10-22"
 translationKey: monitoring-datadog-kubernetes
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Datadog monitoring for Kubernetes microservices
 
 An effective Datadog dashboard does not try to display every possible metric. It answers operational questions: is the application available, is it handling load correctly, where is the incident and what should the team do next?
 
 ## Logs, metrics and traces
 
-Logs provide precise context for an error. Metrics reveal trends and support alerting. Traces help explain a distributed request across multiple services. Correlate all three signals by environment, service, version, pod and business identifiers wherever possible.
+Logs provide precise context for an error. Metrics reveal trends and support alerting. Traces help explain a distributed request across multiple services. Correlate these signals by environment, service and version. Use pod context for infrastructure diagnosis; keep business identifiers in appropriately protected logs or traces, not metric tags.
 
 For a Spring Boot microservice, HTTP, JVM, database, Kafka and Kubernetes metrics provide a comprehensive view. Traces are particularly useful for identifying slow or unstable dependencies.
 
@@ -36,9 +33,39 @@ An alert should be infrequent, clear and actionable. Too many alerts create nois
 
 Key alerts cover elevated error rates, unusual latency, persistent Kafka lag, growing DLQs, restarting pods and resources approaching their limits.
 
+
+## Keep correlation useful and cardinality bounded
+
+Use `env`, `service` and `version` consistently across deployment metadata and instrumentation. The following illustrative pod-template labels make deployment identity explicit; Agent discovery and application tracing still need configuration:
+
+```yaml
+metadata:
+  labels:
+    tags.datadoghq.com/env: "staging"
+    tags.datadoghq.com/service: "orders-example"
+    tags.datadoghq.com/version: "example-build"
+```
+
+These are the [unified service tagging](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging/) keys. Keep request, customer and order IDs out of metric tags: unbounded values multiply time series. When necessary, use access-controlled, redacted logs or traces for diagnostic identifiers instead. See [Datadog tagging guidance](https://docs.datadoghq.com/getting_started/tagging/).
+
+## Separate readiness from liveness
+
+A failed readiness probe removes a pod from normal Service traffic; it does not itself restart the container. Liveness detects a stuck process and can trigger a restart. A startup probe gives a slow-starting application time before these checks run. These distinctions are defined in the [Kubernetes probe documentation](https://kubernetes.io/docs/concepts/workloads/pods/probes/).
+
+Do not make a shared database outage trigger liveness failure across every replica. That turns a dependency incident into a restart storm. Check the purpose of each probe, not just its URL.
+
+## An incident investigation sequence
+
+For an illustrative increase in request latency after a deployment:
+
+1. Compare affected services, versions and time windows. Check traffic volume and error rates before concluding that the release caused it.
+2. Inspect latency distributions and traces to locate slow dependencies. An average can hide a small set of very slow requests.
+3. Correlate with pod restarts, CPU throttling, memory and connection-pool pressure.
+4. If Kafka is involved, inspect lag by partition and consumer activity. Adding replicas cannot help a group beyond the partitions available to assign.
+5. Choose a reversible action, then verify both technical recovery and successful business processing.
+
+A monitor should link to an owner, a runbook and a dashboard. Agree on a user-facing objective first, then tune sustained-error and latency alerts around it. A missing telemetry signal should be investigated separately from a confirmed service failure.
+
 ## Conclusion
 
 Datadog becomes powerful when it reflects how the product actually works. For Kubernetes microservices, the goal is to shorten diagnosis time, make deployments safer and give teams a reliable view of production.
-
-  </div>
-</article>

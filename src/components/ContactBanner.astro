@@ -1,0 +1,13 @@
+---
+import { language } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+import { routes } from '../i18n/routes';
+const lang = language(Astro.url);
+const c = portfolioCopy(lang);
+---
+<section class="section border-t border-line">
+  <div class="container-page grid items-center gap-7 md:grid-cols-[1fr_auto]">
+    <div><p class="eyebrow mb-4">{c('contactLabel')}</p><h2 class="section-title">{c('contactTitle')}</h2><p class="mt-5 max-w-2xl text-slate-600">{c('contactPrompt')}</p></div>
+    <a class="button button-primary" href={routes.contact[lang]}>{c('workTogether')} <span aria-hidden="true" class="ml-3">↗</span></a>
+  </div>
+</section>

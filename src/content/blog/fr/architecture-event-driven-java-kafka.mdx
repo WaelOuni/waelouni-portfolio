@@ -2,13 +2,10 @@
 title: "Architecture event-driven avec Java, Spring Boot et Kafka"
 description: "Comprendre l'architecture event-driven avec Java, Spring Boot et Kafka : avantages, risques, patterns, résilience et observabilité."
 lang: fr
+updatedAt: "2026-10-22"
 translationKey: architecture-event-driven-java-kafka
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Architecture event-driven avec Java, Spring Boot et Kafka
 
 Une architecture event-driven permet à des applications de réagir à des événements métier plutôt que de dépendre uniquement d'appels synchrones. Avec Java, Spring Boot et Kafka, ce modèle est très adapté aux domaines où les données doivent être diffusées à plusieurs consommateurs.
 
@@ -36,9 +33,43 @@ Une architecture event-driven doit être observable dès sa conception. Les équ
 
 La résilience ne se limite pas à redémarrer un pod. Elle implique des messages rejouables, des erreurs isolées, des handlers idempotents et des procédures de récupération connues.
 
+
+## Quand commencer par une API synchrone
+
+Un événement décrit un fait auquel d’autres services peuvent réagir ; il ne remplace pas avantageusement toute requête. Si l’utilisateur attend une réponse immédiate d’une seule autorité, une API synchrone peut être plus simple. Introduire l’asynchrone lorsque des consommateurs indépendants, l’absorption de charge ou le découplage justifient son coût d’exploitation.
+
+Une requête acceptée n’est pas nécessairement une opération terminée. Rendre visibles les états en attente, en échec et terminés. Sinon, la cohérence éventuelle devient une anomalie incompréhensible pour l’utilisateur.
+
+## Fermer la fenêtre d’échec entre base et événement
+
+Prenons un service de commande illustratif. Enregistrer la commande puis publier l’événement laisse une faille : un crash après le commit peut empêcher la publication. Publier en premier crée le risque inverse.
+
+Une outbox enregistre la modification métier et l’événement dans une seule transaction locale. Un relais publie ensuite les enregistrements validés. Le flux conceptuel est le suivant :
+
+```text
+Transaction en base : commande + événement outbox
+                       |
+                       v
+                  Relais / CDC
+                       |
+                       v
+               Consommateurs Kafka
+```
+
+Cela ferme la fenêtre de double écriture locale, sans garantir l’absence de doublons ni une diffusion immédiate. Les consommateurs doivent tolérer le rejeu et le relais doit être supervisé. La [documentation outbox de Debezium](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html) décrit une implémentation par CDC ; c’est une possibilité, pas un prérequis de tout service Java.
+
+## Définir le contrat avant la topologie
+
+Pour chaque événement, convenir d’un responsable, d’un identifiant stable, d’une clé métier, d’un schéma et d’une signification. Limiter les données sensibles au strict besoin. Choisir la clé de partition selon le périmètre d’ordre attendu et documenter le traitement d’un événement ancien arrivant au rejeu.
+
+Kafka ne garantit pas d’ordre global entre partitions. Davantage de partitions apportent du parallélisme, mais un changement de partitionnement peut modifier le routage d’une clé. Les exigences d’ordre font partie du contrat applicatif. Voir la [documentation de conception Apache Kafka](https://kafka.apache.org/41/design/design/).
+
+## Préparer un rejeu maîtrisé
+
+Le plan de reprise doit préciser le groupe concerné, la plage d’offsets, les effets aval attendus et les conditions d’arrêt. Tester un échantillon borné avant un rejeu massif. Confirmer la déduplication et les limites de débit ; surveiller le délai de traitement côté utilisateur en plus du lag.
+
+Pour un parcours multi-services, expliciter les compensations et les responsabilités. Kafka seul n’annule pas un paiement, une réservation de stock et une expédition dans une transaction métier unique. Préférer un flux compréhensible à une topologie événementielle que personne ne sait exploiter sereinement.
+
 ## Conclusion
 
 Java, Spring Boot et Kafka offrent un socle solide pour l'event-driven. La réussite dépend surtout de la qualité des contrats, de l'observabilité, de la stratégie d'erreur et de la capacité des équipes à exploiter le système en production.
-
-  </div>
-</article>

@@ -1,27 +1,21 @@
 ---
-import { translator, language, localizeData } from "../i18n/utils";
+import { language, translator } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import StockPilot from '@components/StockPilot.astro';
+import ContactBanner from '@components/ContactBanner.astro';
+import { projects } from '@data/projects';
 const lang = language(Astro.url);
+const c = portfolioCopy(lang);
 const t = translator(lang);
-
-import BaseLayout from "@layouts/BaseLayout.astro";
-import ProjectCard from "@components/ProjectCard.astro";
-import { projects } from "@data/projects";
 ---
-
-<BaseLayout
-  title={t("Projets Java, Kafka, GCP, Angular et DevOps")}
-  description={t("Projets de Wael Ouni autour de Java, Spring Boot, Kafka, GCP, Kubernetes, Angular, Vue.js, Datadog, CI/CD, API REST et systèmes à fort volume de données.")}
->
-  <section class="section">
-    <div class="container-page">
-      <div class="mb-12 max-w-3xl">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">{t("Projets")}</p>
-        <h1 class="text-4xl font-bold text-ink md:text-5xl">{t("Projets techniques représentatifs")}</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-600">{t("Une sélection de réalisations alignées avec des enjeux de mission fullstack Java senior : flux critiques, microservices, cloud, front-end métier, CI/CD, observabilité et résilience.")}</p>
-      </div>
-      <div class="grid gap-5 md:grid-cols-2">
-        {localizeData(projects, lang).map((project) => <ProjectCard heading="h2" project={project} />)}
-      </div>
-    </div>
-  </section>
+<BaseLayout title={t('Projets')} description={c('projectsDescription')}>
+  <section class="section"><div class="container-page">
+    <div class="page-intro"><p class="eyebrow">{t('Projets')}</p><h1 class="page-title">{c('projectsTitle')}</h1><p class="lead">{c('projectsDescription')}</p></div>
+    <StockPilot full />
+    <div class="mt-16 mb-8"><h2 class="section-title">{c('clientWork')}</h2><p class="mt-5 max-w-2xl text-slate-600">{c('clientNote')}</p></div>
+    {projects.map(project => <ProjectCard project={project} />)}
+  </div></section>
+  <ContactBanner />
 </BaseLayout>

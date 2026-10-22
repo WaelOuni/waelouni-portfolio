@@ -1,17 +1,15 @@
 ---
-import ResumeDownloads from "./ResumeDownloads.astro";
-import { language, localizePath } from "../i18n/utils";
-const lang = language(Astro.url);
-const year = new Date().getFullYear();
+import ResumeDownloads from './ResumeDownloads.astro';
+import { language } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+const c = portfolioCopy(language(Astro.url));
 ---
-
 <footer class="border-t border-line bg-white">
-  <div class="container-page flex flex-col gap-4 py-8 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
-    <p>© {year} Wael Ouni. {lang === "en" ? "SEO-optimized static Astro portfolio." : "Portfolio statique Astro optimisé SEO."}</p>
-    <div class="flex flex-wrap gap-4">
-      <a class="hover:text-brand-700" href="mailto:waelounie@gmail.com">waelounie@gmail.com</a>
-      <ResumeDownloads />
-      <a class="hover:text-brand-700" href={localizePath("/contact/", lang)}>Contact</a>
+  <div class="container-page grid gap-6 py-10 md:grid-cols-[1fr_auto] md:items-center">
+    <div><p class="font-semibold">© {new Date().getFullYear()} Wael Ouni</p><p class="mt-1 text-sm text-slate-600">{c('footer')}</p></div>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+      <a class="text-link" href="mailto:waelounie@gmail.com">waelounie@gmail.com</a>
+      <ResumeDownloads compact />
     </div>
   </div>
 </footer>

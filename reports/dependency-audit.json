@@ -1,0 +1,517 @@
+{
+  "checkedAt": "2026-10-22",
+  "command": "npm audit --omit=dev --json",
+  "counts": {
+    "info": 0,
+    "low": 2,
+    "moderate": 8,
+    "high": 17,
+    "critical": 1,
+    "total": 28
+  },
+  "scope": "Installed build/tooling dependency tree. The deployed artifact is static HTML/CSS/images, with no Node.js server or browser application runtime. Advisory applicability still requires review before release.",
+  "findings": [
+    {
+      "package": "@astrojs/language-server",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": []
+    },
+    {
+      "package": "@astrojs/mdx",
+      "severity": "low",
+      "fixAvailable": {
+        "name": "@astrojs/mdx",
+        "version": "8.1.1",
+        "isSemVerMajor": true
+      },
+      "advisories": []
+    },
+    {
+      "package": "@astrojs/tailwind",
+      "severity": "moderate",
+      "fixAvailable": {
+        "name": "@astrojs/tailwind",
+        "version": "2.1.3",
+        "isSemVerMajor": true
+      },
+      "advisories": []
+    },
+    {
+      "package": "astro",
+      "severity": "critical",
+      "fixAvailable": {
+        "name": "astro",
+        "version": "7.4.2",
+        "isSemVerMajor": true
+      },
+      "advisories": [
+        {
+          "title": "Astro: XSS in define:vars via incomplete </script> tag sanitization",
+          "url": "https://github.com/advisories/GHSA-j687-52p2-xcff",
+          "range": "<6.1.6"
+        },
+        {
+          "title": "Astro: Server island encrypted parameters vulnerable to cross-component replay",
+          "url": "https://github.com/advisories/GHSA-xr5h-phrj-8vxv",
+          "range": "<6.1.10"
+        },
+        {
+          "title": "Astro: XSS via Unescaped Attribute Names in Spread Props",
+          "url": "https://github.com/advisories/GHSA-jrpj-wcv7-9fh9",
+          "range": "<6.4.6"
+        },
+        {
+          "title": "Astro: XSS via unescaped spread attribute names in renderHTMLElement (incomplete fix for CVE-2026-54298)",
+          "url": "https://github.com/advisories/GHSA-f48w-9m4c-m7f5",
+          "range": "<7.0.6"
+        },
+        {
+          "title": "Astro: Cross-site scripting via unescaped transition:* directive values on hydrated islands",
+          "url": "https://github.com/advisories/GHSA-7pw4-f3q4-r2p2",
+          "range": ">=3.10.0 <7.0.4"
+        },
+        {
+          "title": "Astro: Reflected XSS via unescaped View Transition animation properties",
+          "url": "https://github.com/advisories/GHSA-4g3v-8h47-v7g6",
+          "range": ">=2.9.0 <=7.0.9"
+        },
+        {
+          "title": "Astro: Host header SSRF in prerendered error page fetch",
+          "url": "https://github.com/advisories/GHSA-2pvr-wf23-7pc7",
+          "range": "<6.4.6"
+        },
+        {
+          "title": "Astro: Reflected XSS via unescaped slot name",
+          "url": "https://github.com/advisories/GHSA-8hv8-536x-4wqp",
+          "range": "<6.3.3"
+        },
+        {
+          "title": "Astro: Remote code execution through AVIF image optimization",
+          "url": "https://github.com/advisories/GHSA-26w7-cxv4-gfx2",
+          "range": "<7.2.8"
+        },
+        {
+          "title": "Astro: Authorization bypass from missing path-segment boundary check when stripping the configured base",
+          "url": "https://github.com/advisories/GHSA-376h-93r7-7g6f",
+          "range": "<=7.2.3"
+        }
+      ]
+    },
+    {
+      "package": "baseline-browser-mapping",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "baseline-browser-mapping process termination on invalid input causes denial of service",
+          "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
+          "range": ">=2.0.0 <2.11.0"
+        }
+      ]
+    },
+    {
+      "package": "braces",
+      "severity": "high",
+      "fixAvailable": {
+        "name": "tailwindcss",
+        "version": "4.3.3",
+        "isSemVerMajor": true
+      },
+      "advisories": [
+        {
+          "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+          "range": "<=3.0.3"
+        }
+      ]
+    },
+    {
+      "package": "browserslist",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
+          "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+          "range": "<=4.28.6"
+        },
+        {
+          "title": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
+          "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
+          "range": "<=4.28.6"
+        }
+      ]
+    },
+    {
+      "package": "chokidar",
+      "severity": "high",
+      "fixAvailable": {
+        "name": "tailwindcss",
+        "version": "4.3.3",
+        "isSemVerMajor": true
+      },
+      "advisories": []
+    },
+    {
+      "package": "devalue",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "Svelte devalue: DoS via malformed input",
+          "url": "https://github.com/advisories/GHSA-9rgm-9g3h-6x36",
+          "range": "<5.9.1"
+        },
+        {
+          "title": "devalue: `stringify`/`uneval` serialize shared memory",
+          "url": "https://github.com/advisories/GHSA-j22f-vq7h-c4qm",
+          "range": ">=5.1.0 <=5.9.2"
+        },
+        {
+          "title": "devalue: Residual sparse-array CPU amplification in uneval",
+          "url": "https://github.com/advisories/GHSA-hx4r-w6wj-j8fg",
+          "range": "<=5.9.2"
+        },
+        {
+          "title": "devalue: Repeated primitive strings cause quadratic expansion in uneval",
+          "url": "https://github.com/advisories/GHSA-mcm9-63f2-9j32",
+          "range": "<=5.9.2"
+        },
+        {
+          "title": "devalue: Sparse arrays emitted by uneval cause eager allocation when evaluated",
+          "url": "https://github.com/advisories/GHSA-wf3x-273g-mvxv",
+          "range": ">=1.0.0 <=5.9.2"
+        },
+        {
+          "title": "devalue: stringifyAsync can cause an unhandled rejection despite a caught returned promise",
+          "url": "https://github.com/advisories/GHSA-x5rw-q4pp-hg5g",
+          "range": ">=5.8.0 <=5.9.2"
+        },
+        {
+          "title": "devalue: Malformed null-prototype object keys bypass __proto__ rejection via property-key coercion",
+          "url": "https://github.com/advisories/GHSA-4q55-j62x-fr9h",
+          "range": "<=5.9.2"
+        },
+        {
+          "title": "devalue: Custom ArrayBuffer revivers can bypass typed-array allocation validation",
+          "url": "https://github.com/advisories/GHSA-r9w8-h9r3-54w4",
+          "range": "<=5.9.2"
+        }
+      ]
+    },
+    {
+      "package": "esbuild",
+      "severity": "low",
+      "fixAvailable": {
+        "name": "astro",
+        "version": "7.4.2",
+        "isSemVerMajor": true
+      },
+      "advisories": [
+        {
+          "title": "esbuild allows arbitrary file read when running the development server on Windows",
+          "url": "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr",
+          "range": ">=0.27.3 <0.28.1"
+        }
+      ]
+    },
+    {
+      "package": "fast-glob",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": []
+    },
+    {
+      "package": "fast-uri",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "fast-uri vulnerable to host confusion via literal backslash authority delimiter",
+          "url": "https://github.com/advisories/GHSA-v2hh-gcrm-f6hx",
+          "range": ">=3.0.0 <=3.1.3"
+        },
+        {
+          "title": "fast-uri vulnerable to host confusion via backslash authority introducer",
+          "url": "https://github.com/advisories/GHSA-7p8r-x3mc-p8w7",
+          "range": ">=3.0.0 <3.1.5"
+        },
+        {
+          "title": "fast-uri vulnerable to server-side request forgery via malformed IPv6 normalization",
+          "url": "https://github.com/advisories/GHSA-f65p-4m7j-42xc",
+          "range": ">=3.0.0 <3.1.6"
+        },
+        {
+          "title": "fast-uri vulnerable to server-side request forgery via repeated hostname percent-decoding",
+          "url": "https://github.com/advisories/GHSA-fph4-wmhf-6fwf",
+          "range": ">=3.1.2 <3.1.6"
+        },
+        {
+          "title": "fast-uri vulnerable to host confusion via percent-encoded scheme normalization",
+          "url": "https://github.com/advisories/GHSA-jqff-g426-hqxp",
+          "range": ">=3.0.0 <3.1.6"
+        },
+        {
+          "title": "fast-uri vulnerable to host confusion via failed IDN canonicalization",
+          "url": "https://github.com/advisories/GHSA-4c8g-83qw-93j6",
+          "range": ">=3.0.0 <3.1.3"
+        },
+        {
+          "title": "fast-uri vulnerable to authority injection via an unvalidated port in serialize",
+          "url": "https://github.com/advisories/GHSA-qw65-cvwx-89v3",
+          "range": ">=3.0.0 <3.1.7"
+        },
+        {
+          "title": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
+          "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj",
+          "range": ">=3.0.0 <3.1.8"
+        }
+      ]
+    },
+    {
+      "package": "http-cache-semantics",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "http-cache-semantics max-stale handling can disclose cross-user cached responses",
+          "url": "https://github.com/advisories/GHSA-ch52-4w7c-c8xp",
+          "range": "<=4.2.0"
+        }
+      ]
+    },
+    {
+      "package": "js-yaml",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
+          "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+          "range": ">=4.0.0 <4.3.0"
+        },
+        {
+          "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) — CVE-2026-59870 fix not backported",
+          "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+          "range": ">=4.0.0 <4.3.1"
+        },
+        {
+          "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
+          "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+          "range": ">=4.0.0 <4.3.2"
+        }
+      ]
+    },
+    {
+      "package": "micromatch",
+      "severity": "high",
+      "fixAvailable": {
+        "name": "tailwindcss",
+        "version": "4.3.3",
+        "isSemVerMajor": true
+      },
+      "advisories": []
+    },
+    {
+      "package": "nanoid",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "nanoid: non-secure generators can loop indefinitely with negative size",
+          "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
+          "range": "<3.3.16"
+        },
+        {
+          "title": "nanoid: custom generators can loop indefinitely when size is zero",
+          "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
+          "range": "<3.3.18"
+        }
+      ]
+    },
+    {
+      "package": "postcss",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q — attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
+          "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
+          "range": "<=8.5.22"
+        },
+        {
+          "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
+          "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
+          "range": "<=8.5.17"
+        }
+      ]
+    },
+    {
+      "package": "postcss-nested",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": []
+    },
+    {
+      "package": "postcss-selector-parser",
+      "severity": "moderate",
+      "fixAvailable": {
+        "name": "tailwindcss",
+        "version": "4.3.3",
+        "isSemVerMajor": true
+      },
+      "advisories": [
+        {
+          "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+          "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+          "range": "<7.1.6"
+        }
+      ]
+    },
+    {
+      "package": "sharp",
+      "severity": "high",
+      "fixAvailable": {
+        "name": "astro",
+        "version": "7.4.2",
+        "isSemVerMajor": true
+      },
+      "advisories": [
+        {
+          "title": "sharp inherited vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591",
+          "url": "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
+          "range": "<0.35.0"
+        },
+        {
+          "title": "sharp: Vulnerabilities in libheif: GHSA-g89c-p67h-r497 and GHSA-2jg2-4ch7-h545",
+          "url": "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+          "range": "<0.35.4"
+        },
+        {
+          "title": "sharp : Vulnerability in librsvg dependency CVE-2026-96889",
+          "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w",
+          "range": "<0.35.5"
+        }
+      ]
+    },
+    {
+      "package": "smol-toml",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "smol-toml: Denial of Service via malformed TOML documents",
+          "url": "https://github.com/advisories/GHSA-7w5x-hrqm-74c2",
+          "range": "<=1.7.0"
+        },
+        {
+          "title": "smol-toml: Quadratic-time parse() from parseKey rescanning to end of document on each key line",
+          "url": "https://github.com/advisories/GHSA-r4xh-jqrq-34v2",
+          "range": "<=1.8.0"
+        }
+      ]
+    },
+    {
+      "package": "source-map-js",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
+          "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+          "range": ">=1.0.0 <1.2.2"
+        }
+      ]
+    },
+    {
+      "package": "svgo",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "SVGO removeScripts plugin leaves some executable scripts intact",
+          "url": "https://github.com/advisories/GHSA-2p49-hgcm-8545",
+          "range": ">=4.0.0 <4.0.2"
+        },
+        {
+          "title": "SVGO: removeScripts allows executable links through namespace and control-character bypasses",
+          "url": "https://github.com/advisories/GHSA-w27v-7q3p-w38r",
+          "range": ">=4.0.0 <4.1.0"
+        },
+        {
+          "title": "SVGO: removeScripts incompletely sanitizes executable HTML in SVG foreignObject elements",
+          "url": "https://github.com/advisories/GHSA-4vpr-x523-8j87",
+          "range": ">=4.0.0 <4.1.0"
+        }
+      ]
+    },
+    {
+      "package": "tailwindcss",
+      "severity": "high",
+      "fixAvailable": {
+        "name": "tailwindcss",
+        "version": "4.3.3",
+        "isSemVerMajor": true
+      },
+      "advisories": []
+    },
+    {
+      "package": "vite",
+      "severity": "high",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "launch-editor: escapeCmdArgs() omits % escaping on Windows",
+          "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
+          "range": "<=6.4.3"
+        },
+        {
+          "title": "launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for some editors",
+          "url": "https://github.com/advisories/GHSA-r825-w8mm-5pxw",
+          "range": "<=6.4.3"
+        },
+        {
+          "title": "launch-editor: `fs.existsSync()` existence check can be bypassed on Windows",
+          "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+          "range": "<=6.4.3"
+        },
+        {
+          "title": "Vite: Cross origin script execution through Vite custom middleware",
+          "url": "https://github.com/advisories/GHSA-9jrq-w75r-8gcw",
+          "range": "<=6.4.3"
+        },
+        {
+          "title": "Vite: Files outside `server.fs.allow` could be served when project paths match system paths on non-Windows machine",
+          "url": "https://github.com/advisories/GHSA-rq7h-c2jc-7f22",
+          "range": "<=6.4.3"
+        }
+      ]
+    },
+    {
+      "package": "volar-service-yaml",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": []
+    },
+    {
+      "package": "yaml",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": [
+        {
+          "title": "yaml is vulnerable to Stack Overflow via deeply nested YAML collections",
+          "url": "https://github.com/advisories/GHSA-48c2-rrv3-qjmp",
+          "range": ">=2.0.0 <2.8.3"
+        }
+      ]
+    },
+    {
+      "package": "yaml-language-server",
+      "severity": "moderate",
+      "fixAvailable": true,
+      "advisories": []
+    }
+  ],
+  "decision": "Keep the existing Astro 5 / Tailwind 3 toolchain during the design change. Astro 5 has no available patched 5.x release for the listed Astro advisories. A supported Astro/MDX upgrade and Tailwind integration migration need a dedicated compatibility validation; npm audit fix --force was not run. This remains a release-review blocker, not a claim that the static production website is exploitable."
+}

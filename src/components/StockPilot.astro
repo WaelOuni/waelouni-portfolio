@@ -1,0 +1,35 @@
+---
+import { language } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+import { routes } from '../i18n/routes';
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+const lang = language(Astro.url);
+const c = portfolioCopy(lang);
+const source = 'https://github.com/WaelOuni/stockpilot-ai';
+const Heading = full ? 'h2' : 'h3';
+---
+<article id="stockpilot" class="project-feature">
+  <div class="grid items-start gap-10 lg:grid-cols-[1.3fr_1fr]">
+    <div>
+      <p class="eyebrow">{c('personal')}</p>
+      <Heading class="mt-4 text-3xl font-semibold md:text-4xl">StockPilot AI</Heading>
+      <p class="mt-4 text-xl leading-relaxed">{c('stockIntro')}</p>
+      <p class="mt-5 leading-relaxed">{c('stockProblem')}</p>
+      <a class="text-link mt-5" href={full ? source : `${routes.projects[lang]}#stockpilot`}>{c(full ? 'source' : 'viewCase')} <span aria-hidden="true">↗</span></a>
+      <p class="mt-4 text-sm">{c('stockStatus')}</p>
+    </div>
+    <figure>
+      <figcaption class="text-sm font-semibold">{c('architecture')}</figcaption>
+      <ol class="architecture-flow">
+        <li><small>{c('userInterface')}</small><strong>Vue 3 · TypeScript</strong></li>
+        <li><small>{c('orchestration')}</small><strong>FastAPI · LangGraph · Ollama</strong></li>
+        <li><small>{c('businessRules')}</small><strong>Python · MongoDB · PostgreSQL / pgvector</strong></li>
+      </ol>
+    </figure>
+  </div>
+  {full && <div class="mt-10 grid gap-8 border-t border-slate-500 pt-8 md:grid-cols-2">
+    <div><h3 class="text-xl font-semibold">{c('verifiedFunctions')}</h3><ul class="mt-4 list-disc space-y-3 pl-5 text-slate-200">{(['stockFeature1','stockFeature2','stockFeature3','stockFeature4'] as const).map(key => <li>{c(key)}</li>)}</ul></div>
+    <div><h3 class="text-xl font-semibold">{c('limits')}</h3><p class="mt-4">{c('stockQuality')}</p><p class="mt-4">{c('stockLimits')}</p><a class="text-link mt-4" href={`${source}/blob/e5a066364c6abe4e88b5b1bb9a98ac0640063d81/docs/architecture.md`}>{c('architecture')} <span aria-hidden="true">↗</span></a></div>
+  </div>}
+</article>

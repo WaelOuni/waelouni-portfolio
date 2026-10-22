@@ -2,13 +2,10 @@
 title: "Event-driven architecture with Java, Spring Boot and Kafka"
 description: "Understand event-driven architecture with Java, Spring Boot and Kafka: benefits, risks, patterns, resilience and observability."
 lang: en
+updatedAt: "2026-10-22"
 translationKey: architecture-event-driven-java-kafka
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Event-driven architecture with Java, Spring Boot and Kafka
 
 An event-driven architecture allows applications to react to business events rather than relying solely on synchronous calls. With Java, Spring Boot and Kafka, this model is well suited to domains where data must reach multiple consumers.
 
@@ -36,9 +33,43 @@ An event-driven architecture should be observable by design. Teams need to track
 
 Resilience goes beyond restarting a pod. It requires replayable messages, isolated failures, idempotent handlers and well-understood recovery procedures.
 
+
+## When a synchronous API is the better starting point
+
+An event is a fact that other services may react to; it is not a convenient substitute for every request. If a user needs an immediate answer from one authority, a synchronous API may be simpler. Introduce asynchronous processing when independent consumers, buffering or decoupled delivery justify the operational cost.
+
+An accepted request is not necessarily a completed operation. Make pending, failed and completed states visible to the caller. Otherwise eventual consistency becomes an unexplained product defect.
+
+## Close the database-to-event failure window
+
+Consider an illustrative order service. Saving an order and then publishing an event leaves a gap: a crash after the database commit can prevent publication. Publishing first creates the opposite risk.
+
+An outbox stores the business change and an event record in one local database transaction. A separate relay publishes committed records. A conceptual flow is:
+
+```text
+Database transaction: order + outbox event
+                       |
+                       v
+                  Relay / CDC
+                       |
+                       v
+                 Kafka consumers
+```
+
+This closes the local dual-write gap, but does not promise zero duplicates or immediate delivery. Consumers must still tolerate replay, and the relay needs monitoring. The [Debezium outbox documentation](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html) describes one CDC-based implementation; it is an option, not a prerequisite for every Java service.
+
+## Define the contract before the topology
+
+For each event, agree on an owner, stable identity, business key, schema and meaning. Keep sensitive data out unless the use case requires it. Choose the partition key around the ordering boundary, and document how a consumer handles an older event arriving during replay.
+
+Kafka does not provide a global order across partitions. More partitions offer concurrency, but changing partitioning can change where a key is routed. Treat ordering requirements as part of the application contract. See [Apache Kafka's design documentation](https://kafka.apache.org/41/design/design/).
+
+## Prepare a controlled replay
+
+A recovery plan should specify the affected consumer group, offset range, expected downstream effects and stop conditions. Test with a bounded sample before a large replay. Confirm deduplication and rate limits, and watch the user-facing processing delay as well as consumer lag.
+
+For a workflow spanning several services, define compensation and ownership explicitly. Kafka alone does not roll back a payment, stock reservation and shipment as one business transaction. Prefer a small, understandable workflow over an event topology that no team can operate confidently.
+
 ## Conclusion
 
 Java, Spring Boot and Kafka provide a solid foundation for event-driven systems. Success depends primarily on sound contracts, observability, error handling and the team's ability to operate the system in production.
-
-  </div>
-</article>

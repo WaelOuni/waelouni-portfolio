@@ -1,4 +1,5 @@
 export type Experience = {
+  id: string;
   role: string;
   client?: string;
   period: string;
@@ -9,6 +10,7 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    id: "adeo-supply-chain",
     role: "Développeur Fullstack Java Senior",
     client: "ADEO",
     period: "Avril 2023 - aujourd'hui",
@@ -30,13 +32,15 @@ export const experiences: Experience[] = [
     achievements: [
       "Conception et développement de batchs critiques pour l'intégration de flux logistiques",
       "Mise en place de connecteurs Kafka MongoDB et Oracle pour la synchronisation de données",
-      "Développement d'API REST métiers pour la gestion des commandes Kalypso",
+      "Développement d'API REST métiers pour la gestion des commandes",
       "Migration technique vers Kubernetes sur GCP et modernisation Spring Boot",
       "Optimisation des pipelines CI/CD GitHub Actions",
-      "Monitoring Datadog, logs, métriques et amélioration de la fiabilité en production"
+      "Monitoring Datadog, logs, métriques et amélioration de la fiabilité en production",
+      "Tests automatisés, revues de code et diagnostic d’incidents en production"
     ]
   },
   {
+    id: "ag2r-modernization",
     role: "Développeur Java / Angular",
     client: "AG2R La Mondiale",
     period: "Mai 2022 - Mars 2023",
@@ -52,6 +56,7 @@ export const experiences: Experience[] = [
     ]
   },
   {
+    id: "adeo-payments",
     role: "Développeur Java / Angular",
     client: "ADEO",
     period: "Janvier 2021 - Avril 2022",
@@ -60,7 +65,7 @@ export const experiences: Experience[] = [
     stack: ["Java 11", "Spring", "Angular 11", "Kafka", "GCP", "GKE", "Vault", "GitLab CI", "Datadog", "k9s"],
     achievements: [
       "Développement de services backend pour la gestion des transactions",
-      "Participation au développement du paiement en ligne WPU",
+      "Participation au développement du paiement en ligne",
       "Migration du référentiel client vers une architecture MDM",
       "Intégration de Kafka pour le traitement asynchrone des flux",
       "Développement d'interfaces Angular",
@@ -68,6 +73,7 @@ export const experiences: Experience[] = [
     ]
   },
   {
+    id: "axa-integration",
     role: "Analyste développeur Java",
     client: "AXA France",
     period: "Juillet 2019 - Octobre 2020",
@@ -84,6 +90,7 @@ export const experiences: Experience[] = [
     ]
   },
   {
+    id: "enki-portal",
     role: "Ingénieur d'étude et développement Java / Angular",
     client: "Leroy Merlin - ENKI",
     period: "Août 2018 - Juin 2019",
@@ -99,11 +106,12 @@ export const experiences: Experience[] = [
     ]
   },
   {
+    id: "decathlon-reporting",
     role: "Développeur Java / Angular",
     client: "Decathlon",
     period: "Avril 2018 - Août 2018",
     context:
-      "Développement de l'application MyQualityGate POC pour générer des rapports à partir d'un fournisseur de données multidimensionnelle Kylin.",
+      "Développement d’un prototype de reporting pour générer des rapports à partir d'un fournisseur de données multidimensionnelle Kylin.",
     stack: ["Angular 6", "Spring Boot", "Jenkins", "Docker", "Rancher", "Nexus", "Maven", "Kylin", "PostgreSQL", "Git"],
     achievements: [
       "Développement d'un dashboard de reporting Angular / Spring Boot",

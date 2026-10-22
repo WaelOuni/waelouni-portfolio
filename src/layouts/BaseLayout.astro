@@ -9,6 +9,7 @@ import "@styles/global.css";
 export interface Props {
   title: string;
   description: string;
+  modifiedAt?: string;
   canonical?: string;
   type?: "website" | "article";
   frontmatter?: {
@@ -31,64 +32,16 @@ const type = Astro.props.type ?? frontmatter.type ?? "website";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F8FAFC" />
+    <meta name="theme-color" content="#FAFAF9" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script is:inline>
-      document.documentElement.classList.add("js");
-    </script>
-    <Seo title={title} description={description} canonical={canonical} type={type} />
+    <Seo title={title} description={description} canonical={canonical} type={type} modifiedAt={Astro.props.modifiedAt} />
   </head>
   <body>
     <a class="skip-link" href="#contenu">{lang === "en" ? "Skip to content" : "Aller au contenu"}</a>
     <Header />
-    <main id="contenu">
+    <main id="contenu" tabindex="-1">
       <slot />
     </main>
     <Footer />
-    <script is:inline>
-      (() => {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (reduceMotion || !("IntersectionObserver" in window)) {
-          return;
-        }
-
-        const selectors = [
-          ".section > .container-page > :not(.grid)",
-          ".card",
-          ".prose-content > h1",
-          ".prose-content > h2",
-          ".prose-content > h3",
-          ".prose-content > p",
-          ".prose-content > ul",
-          ".prose-content > ol"
-        ];
-
-        const targets = Array.from(document.querySelectorAll(selectors.join(",")));
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            }
-          },
-          {
-            rootMargin: "0px 0px -12% 0px",
-            threshold: 0.12
-          }
-        );
-
-        targets.forEach((target, index) => {
-          if (!(target instanceof HTMLElement) || target.dataset.reveal) {
-            return;
-          }
-
-          target.dataset.reveal = target.classList.contains("card") ? "scale" : "fade";
-          target.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 55}ms`);
-          observer.observe(target);
-        });
-      })();
-    </script>
   </body>
 </html>

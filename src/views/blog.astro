@@ -1,40 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-import { translator, language, localizePath } from "../i18n/utils";
-const lang = language(Astro.url);
-const t = translator(lang);
-
-import BaseLayout from "@layouts/BaseLayout.astro";
-
-const posts = (await getCollection('blog', ({ data }) => data.lang === lang))
-  .sort((a, b) => ['kafka-spring-boot-production', 'monitoring-datadog-kubernetes', 'architecture-event-driven-java-kafka'].indexOf(a.data.translationKey) - ['kafka-spring-boot-production', 'monitoring-datadog-kubernetes', 'architecture-event-driven-java-kafka'].indexOf(b.data.translationKey))
-  .map(post => ({ title: post.data.title, description: post.data.description, href: localizePath(`/blog/${post.data.translationKey}/`, lang) }));
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ArticleList from '@components/ArticleList.astro';
+import { language } from '../i18n/utils';
+import { portfolioCopy } from '../i18n/portfolio';
+const c = portfolioCopy(language(Astro.url));
 ---
-
-<BaseLayout
-  title={t("Blog Java, Kafka, Kubernetes et observabilité")}
-  description={t("Articles techniques de Wael Ouni sur Java, Spring Boot, Kafka, Kubernetes, Datadog, architecture event-driven et observabilité.")}
->
-  <section class="section">
-    <div class="container-page">
-      <div class="mb-12 max-w-3xl">
-        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">Blog</p>
-        <h1 class="text-4xl font-bold text-ink md:text-5xl">{t("Articles backend Java et production")}</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-600">{t("Des contenus orientés terrain pour construire, monitorer et faire évoluer des systèmes Java distribués.")}</p>
-      </div>
-      <div class="grid gap-5 md:grid-cols-3">
-        {
-          posts.map((post) => (
-            <article class="card rounded-lg p-6">
-              <h2 class="text-xl font-bold text-ink">
-                <a class="hover:text-brand-700" href={post.href}>{post.title}</a>
-              </h2>
-              <p class="mt-3 leading-7 text-slate-600">{post.description}</p>
-              <a class="mt-5 inline-flex font-semibold text-brand-700 hover:underline" href={post.href}>{t("Lire l'article")}</a>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+<BaseLayout title={c('writing')} description={c('writingDescription')}>
+  <section class="section"><div class="container-page"><div class="page-intro"><p class="eyebrow">{c('writing')}</p><h1 class="page-title">{c('writingTitle')}</h1><p class="lead">{c('writingDescription')}</p></div><ArticleList heading="h2" /></div></section>
 </BaseLayout>

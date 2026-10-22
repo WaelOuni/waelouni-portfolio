@@ -2,13 +2,10 @@
 title: "Kafka with Spring Boot in production: best practices"
 description: "A practical guide to running Kafka with Spring Boot in production: consumer groups, idempotency, retries, DLQs, observability, Schema Registry and lag monitoring."
 lang: en
+updatedAt: "2026-10-22"
 translationKey: kafka-spring-boot-production
 ---
 
-<article class="section">
-  <div class="container-page prose-content max-w-3xl">
-
-# Kafka with Spring Boot in production: best practices
 
 Kafka is a strong foundation for decoupling systems, absorbing load and distributing business events. In production, the challenge goes beyond consuming a topic: you need predictable error handling, measurable lag, controlled replay and protection against unintended side effects.
 
@@ -42,9 +39,34 @@ Kafka lag is a key indicator, but it is not enough on its own. Correlate it with
 
 A useful Datadog dashboard shows critical consumer groups, topics, lag per partition, exceptions by type, pod restarts and processing times. Alerts should be actionable, with thresholds suited to business processing cycles.
 
+
+## Choose the failure semantics before configuring retries
+
+A retry topic allows other records to proceed, but the failed record can then complete after later events. If order matters for a business key, decide whether to block, pause or reconcile before enabling this strategy. Spring Kafka documents this [ordering tradeoff](https://docs.spring.io/spring-kafka/reference/retrytopic/how-the-pattern-works.html).
+
+Producer idempotence does not make a consumer's database update or HTTP call idempotent. Kafka transactions can coordinate Kafka records and offsets; an external side effect still needs its own consistency strategy. See [Spring Kafka's transaction scope](https://docs.spring.io/spring-kafka/reference/kafka/exactly-once.html).
+
+## A concrete duplicate-processing guard
+
+For a database-backed consumer, record the event ID and the business change in the **same database transaction**. This illustrative PostgreSQL fragment assumes a primary key on `processed_event.event_id`:
+
+```sql
+INSERT INTO processed_event (event_id)
+VALUES ('example-event-42')
+ON CONFLICT (event_id) DO NOTHING
+RETURNING event_id;
+```
+
+Apply the business change only when this returns a row. Commit the database transaction before acknowledging the record; roll back both writes on failure. If the process stops between database commit and offset commit, the repeated insert becomes a no-op. The event ID must be stable across replays. See the [PostgreSQL INSERT contract](https://www.postgresql.org/docs/current/sql-insert.html).
+
+This example does not protect a payment or email sent outside that transaction. Such effects require an idempotent downstream API or a durable outbox. Keep offset acknowledgement configuration consistent with the listener's record or batch mode.
+
+## Validate the recovery path
+
+Before release, exercise duplicate delivery, a malformed record, an unavailable database and a restart after database commit. Check whether retries preserve the required order, whether a DLQ publication failure is surfaced, and who can authorize replay. A green happy-path test does not cover these failure windows.
+
+For schema changes, distinguish backward compatibility from transitive compatibility: validating against only the latest schema can miss older retained events. Plan reader and writer rollout together. The [Schema Registry compatibility guide](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html) explains the available modes.
+
 ## Conclusion
 
 Running Kafka in production requires discipline: schema contracts, idempotent handlers, a clear error strategy, useful dashboards and controlled reprocessing. With Spring Boot, these practices help teams build reliable, maintainable consumers.
-
-  </div>
-</article>
