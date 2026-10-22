@@ -1,0 +1,44 @@
+---
+title: "Datadog monitoring for Kubernetes microservices"
+description: "Set up useful Datadog monitoring for Kubernetes microservices: logs, metrics, traces, pods, restarts, dashboards and alerting."
+lang: en
+translationKey: monitoring-datadog-kubernetes
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Datadog monitoring for Kubernetes microservices
+
+An effective Datadog dashboard does not try to display every possible metric. It answers operational questions: is the application available, is it handling load correctly, where is the incident and what should the team do next?
+
+## Logs, metrics and traces
+
+Logs provide precise context for an error. Metrics reveal trends and support alerting. Traces help explain a distributed request across multiple services. Correlate all three signals by environment, service, version, pod and business identifiers wherever possible.
+
+For a Spring Boot microservice, HTTP, JVM, database, Kafka and Kubernetes metrics provide a comprehensive view. Traces are particularly useful for identifying slow or unstable dependencies.
+
+## Monitor Kubernetes pods
+
+A service can respond slowly without being completely unavailable. Track restarts, pod status, CPU usage, memory, resource limits, readiness failures and deployment changes.
+
+Frequent restarts, OOMKilled events and unstable probes need prompt attention. They often reveal configuration problems, memory leaks or poorly controlled external dependencies.
+
+## Build actionable dashboards
+
+A good dashboard starts with an overview: availability, error rate, latency, volume, Kubernetes health and Kafka message lag. Subsequent sections cover dependencies, errors by endpoint, recent logs and DLQs.
+
+Create widgets that support action. A chart should help teams decide whether to roll back, scale, fix configuration, reprocess messages or investigate application behavior.
+
+## Useful alerting
+
+An alert should be infrequent, clear and actionable. Too many alerts create noise and weaken the team's response. Thresholds should account for peak hours, batch jobs, release windows and business criticality.
+
+Key alerts cover elevated error rates, unusual latency, persistent Kafka lag, growing DLQs, restarting pods and resources approaching their limits.
+
+## Conclusion
+
+Datadog becomes powerful when it reflects how the product actually works. For Kubernetes microservices, the goal is to shorten diagnosis time, make deployments safer and give teams a reliable view of production.
+
+  </div>
+</article>

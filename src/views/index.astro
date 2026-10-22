@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import { translator, language, localizePath, localizeData } from "../i18n/utils";
+const lang = language(Astro.url);
+const t = translator(lang);
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/Hero.astro";
+import SectionTitle from "@components/SectionTitle.astro";
+import SkillCard from "@components/SkillCard.astro";
+import ExperienceCard from "@components/ExperienceCard.astro";
+import ProjectCard from "@components/ProjectCard.astro";
+import ContactCard from "@components/ContactCard.astro";
+import { skillCategories } from "@data/skills";
+import { experiences } from "@data/experiences";
+import { projects } from "@data/projects";
+
+const blogPosts = (await getCollection('blog', ({ data }) => data.lang === lang))
+  .sort((a, b) => ['kafka-spring-boot-production', 'monitoring-datadog-kubernetes', 'architecture-event-driven-java-kafka'].indexOf(a.data.translationKey) - ['kafka-spring-boot-production', 'monitoring-datadog-kubernetes', 'architecture-event-driven-java-kafka'].indexOf(b.data.translationKey))
+  .map(post => ({ title: post.data.title, description: post.data.description, href: localizePath(`/blog/${post.data.translationKey}/`, lang) }));
+---
+
+<BaseLayout
+  title={t("Wael Ouni - Développeur Fullstack Java Senior")}
+  description={t("Portfolio de Wael Ouni, développeur fullstack Java senior spécialisé en Java, Spring Boot, Kafka, microservices, GCP, Kubernetes, Angular, CI/CD et observabilité.")}
+>
+  <Hero />
+
+  <section class="section">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow={t("Compétences clés")}
+        title={t("Un socle fullstack orienté systèmes distribués")}
+        description={t("Java, Spring Boot, Kafka, GCP, Kubernetes, Angular et Datadog pour construire, exploiter et faire évoluer des plateformes critiques.")}
+      />
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {localizeData(skillCategories, lang).slice(0, 4).map((skill) => <SkillCard skill={skill} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow={t("Expériences")}
+        title={t("Des missions au contact de la production")}
+        description={t("Supply Chain, assurance, e-commerce, paiement, dashboards, intégration Kafka, CI/CD et support production.")}
+      />
+      <div class="grid gap-6">
+        {localizeData(experiences, lang).map((experience) => <ExperienceCard heading="h3" experience={experience} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow={t("Projets")}
+        title={t("Réalisations techniques représentatives")}
+        description={t("Des projets centrés sur les flux Kafka, les batchs critiques, les API métier, les migrations cloud et les interfaces Angular/Vue.js.")}
+      />
+      <div class="grid gap-5 md:grid-cols-2">
+        {localizeData(projects, lang).slice(0, 4).map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <SectionTitle
+        eyebrow="Blog"
+        title={t("Notes d'architecture et de production")}
+        description={t("Articles pratiques pour équipes backend Java travaillant avec Kafka, Kubernetes et Datadog.")}
+      />
+      <div class="grid gap-5 md:grid-cols-3">
+        {
+          blogPosts.map((post) => (
+            <article class="card rounded-lg p-6">
+              <h3 class="text-xl font-bold text-ink">
+                <a class="hover:text-brand-700" href={post.href}>{post.title}</a>
+              </h3>
+              <p class="mt-3 leading-7 text-slate-600">{post.description}</p>
+              <a class="mt-5 inline-flex font-semibold text-brand-700 hover:underline" href={post.href}>{t("Lire l'article")}</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-8 md:grid-cols-[1fr_420px] md:items-center">
+      <div>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">{t("Contact rapide")}</p>
+        <h2 class="text-3xl font-bold text-ink md:text-4xl">{t("Besoin d'un profil Java senior pour une plateforme critique ?")}</h2>
+        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">{t("Je peux intervenir sur la conception de microservices, l'intégration Kafka, les batchs, les API REST, les interfaces Angular/Vue.js, l'observabilité Datadog et la mise en place de CI/CD.")}</p>
+      </div>
+      <ContactCard />
+    </div>
+  </section>
+</BaseLayout>

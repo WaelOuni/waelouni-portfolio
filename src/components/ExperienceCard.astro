@@ -1,11 +1,13 @@
 ---
+
 import type { Experience } from "@data/experiences";
 
 export interface Props {
+  heading?: "h2" | "h3";
   experience: Experience;
 }
 
-const { experience } = Astro.props;
+const { experience, heading: Heading = "h2" } = Astro.props;
 ---
 
 <article class="relative border-l-2 border-brand-100 pl-6">
@@ -13,7 +15,7 @@ const { experience } = Astro.props;
   <div class="card rounded-lg p-6">
     <div class="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
       <div>
-        <h2 class="text-2xl font-bold text-ink">{experience.role}</h2>
+        <Heading class="text-2xl font-bold text-ink">{experience.role}</Heading>
         {experience.client && <p class="mt-1 font-semibold text-brand-700">Client : {experience.client}</p>}
       </div>
       <p class="rounded-md bg-brand-50 px-3 py-1 text-sm font-semibold text-brand-700">{experience.period}</p>
