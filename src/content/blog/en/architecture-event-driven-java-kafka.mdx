@@ -1,0 +1,44 @@
+---
+title: "Event-driven architecture with Java, Spring Boot and Kafka"
+description: "Understand event-driven architecture with Java, Spring Boot and Kafka: benefits, risks, patterns, resilience and observability."
+lang: en
+translationKey: architecture-event-driven-java-kafka
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Event-driven architecture with Java, Spring Boot and Kafka
+
+An event-driven architecture allows applications to react to business events rather than relying solely on synchronous calls. With Java, Spring Boot and Kafka, this model is well suited to domains where data must reach multiple consumers.
+
+## Why choose event-driven architecture
+
+The main benefit is decoupling. A producer publishes an event that multiple consumers can use without depending directly on that producer. This makes it easier to extend the system, support new use cases and handle changes in load.
+
+In retail or product catalog systems, this model propagates data changes to multiple applications: search, inventory, pricing, PIM, reporting and partner systems.
+
+## Benefits and risks
+
+The benefits are clear: scalability, decoupling, event history, asynchronous processing and better handling of traffic spikes. So are the risks: misunderstood eventual consistency, unstable event contracts, duplicate messages, more complex diagnosis and delicate reprocessing.
+
+Teams must document events, define each service's responsibilities and monitor the entire processing chain.
+
+## Useful patterns
+
+Common patterns include idempotency, DLQs, retries with backoff, controlled reprocessing, schema compatibility and the outbox pattern. These mechanisms reduce the risk of inconsistent state after an incident or deployment.
+
+The outbox pattern is particularly useful when a service must persist data and publish an event while maintaining consistency between the database and the Kafka message.
+
+## Resilience and observability
+
+An event-driven architecture should be observable by design. Teams need to track throughput, lag, errors, retries, DLQs, end-to-end latency and consumer health.
+
+Resilience goes beyond restarting a pod. It requires replayable messages, isolated failures, idempotent handlers and well-understood recovery procedures.
+
+## Conclusion
+
+Java, Spring Boot and Kafka provide a solid foundation for event-driven systems. Success depends primarily on sound contracts, observability, error handling and the team's ability to operate the system in production.
+
+  </div>
+</article>

@@ -1,0 +1,50 @@
+---
+title: "Kafka with Spring Boot in production: best practices"
+description: "A practical guide to running Kafka with Spring Boot in production: consumer groups, idempotency, retries, DLQs, observability, Schema Registry and lag monitoring."
+lang: en
+translationKey: kafka-spring-boot-production
+---
+
+<article class="section">
+  <div class="container-page prose-content max-w-3xl">
+
+# Kafka with Spring Boot in production: best practices
+
+Kafka is a strong foundation for decoupling systems, absorbing load and distributing business events. In production, the challenge goes beyond consuming a topic: you need predictable error handling, measurable lag, controlled replay and protection against unintended side effects.
+
+## Design consumer groups carefully
+
+A consumer group represents a logical application. Consumers within the same group share a topic's partitions. To keep behavior predictable, align the partition count, expected volume and the application's actual level of parallelism.
+
+Clear group IDs also help operations teams. They should identify the domain, application and environment. During an incident, this convention speeds up diagnosis in Kafka and Datadog dashboards.
+
+## Make processing idempotent
+
+Kafka preserves ordering within a partition, but an application may read a message again after a crash, timeout or rebalance. Handlers must therefore be idempotent: processing the same event twice must not produce inconsistent business effects.
+
+Common approaches include a stable business key, an event ID, processing state stored in a database or a uniqueness constraint. The goal is straightforward: allow replay without corrupting data.
+
+## Retries, backoff and DLQs
+
+Not all failures are alike. A temporary network error can be retried with backoff. Invalid data should be isolated quickly so that it does not block an entire partition. A robust strategy therefore distinguishes transient failures from business errors.
+
+A DLQ is useful only if teams can operate it effectively. It should carry enough context: source topic, partition, offset, key, payload where permitted, exception, application and timestamp. Without this information, reprocessing becomes slow and risky.
+
+## Schema Registry and compatibility
+
+With Avro and Schema Registry, schema compatibility becomes a contract between producers and consumers. In production, avoid breaking changes, version events carefully and test schema evolution in CI.
+
+A well-maintained schema reduces surprises during independent deployments. This is essential in an event-driven architecture with several consumer teams.
+
+## Observability and lag monitoring
+
+Kafka lag is a key indicator, but it is not enough on its own. Correlate it with incoming throughput, application errors, retries, DLQs, processing latency and Kubernetes pod health.
+
+A useful Datadog dashboard shows critical consumer groups, topics, lag per partition, exceptions by type, pod restarts and processing times. Alerts should be actionable, with thresholds suited to business processing cycles.
+
+## Conclusion
+
+Running Kafka in production requires discipline: schema contracts, idempotent handlers, a clear error strategy, useful dashboards and controlled reprocessing. With Spring Boot, these practices help teams build reliable, maintainable consumers.
+
+  </div>
+</article>

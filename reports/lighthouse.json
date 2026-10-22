@@ -1,0 +1,89 @@
+{
+  "scope": "Local production preview; homepages only; simulated Lighthouse mobile/desktop settings. These are not production Vercel scores.",
+  "results": [
+    {
+      "lang": "en",
+      "device": "mobile",
+      "url": "http://127.0.0.1:4322/",
+      "fetchedAt": "2026-10-22T13:08:59.631Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 799.9202,
+        "largest-contentful-paint": 1061.8404,
+        "total-blocking-time": 7,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": [],
+      "failedAccessibilityAudits": []
+    },
+    {
+      "lang": "en",
+      "device": "desktop",
+      "url": "http://127.0.0.1:4322/",
+      "fetchedAt": "2026-10-22T13:09:14.581Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 215.03625,
+        "largest-contentful-paint": 286.0725,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": [],
+      "failedAccessibilityAudits": []
+    },
+    {
+      "lang": "fr",
+      "device": "mobile",
+      "url": "http://127.0.0.1:4322/fr/",
+      "fetchedAt": "2026-10-22T13:09:29.080Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 801.7614999999998,
+        "largest-contentful-paint": 1055.523,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": [],
+      "failedAccessibilityAudits": []
+    },
+    {
+      "lang": "fr",
+      "device": "desktop",
+      "url": "http://127.0.0.1:4322/fr/",
+      "fetchedAt": "2026-10-22T13:09:43.737Z",
+      "lighthouseVersion": "13.5.0",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 217.8501,
+        "largest-contentful-paint": 285.7002,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "warnings": [],
+      "failedAccessibilityAudits": []
+    }
+  ]
+}

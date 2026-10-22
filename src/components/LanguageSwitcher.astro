@@ -1,0 +1,9 @@
+---
+import { language, routeKey } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+const lang = language(Astro.url);
+const key = routeKey(Astro.url.pathname);
+---
+{key && <div class="flex shrink-0 items-center gap-1 text-sm font-semibold" role="group" aria-label={lang === 'en' ? 'Language' : 'Langue'}>
+  {(['en', 'fr'] as const).map(locale => <a class:list={['rounded-md px-2 py-2 hover:bg-brand-50', lang === locale && 'bg-brand-50 text-brand-700 underline underline-offset-4']} href={routes[key][locale]} lang={locale} hreflang={locale} aria-label={locale === 'en' ? 'EN — English' : 'FR — Français'} aria-current={lang === locale ? 'page' : undefined}>{locale.toUpperCase()}</a>)}
+</div>}

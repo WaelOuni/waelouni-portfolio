@@ -24,3 +24,8 @@ Thumbs.db
 
 # Vercel
 .vercel/
+
+# Byte-identical resume aliases prepared by Astro config
+/public/cv/*.pdf
+/playwright-report/
+/test-results/
