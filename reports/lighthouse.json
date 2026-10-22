@@ -6,7 +6,7 @@
       "device": "mobile",
       "url": "http://127.0.0.1:4322/",
       "htmlSha256": "bf05d96cfa6e1a9c706ef73573d6711fd56ffb234fcbdfb373b193888cdd9a90",
-      "fetchedAt": "2026-10-22T14:07:54.071Z",
+      "fetchedAt": "2026-10-22T14:35:01.916Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -15,12 +15,12 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 878.7406,
-        "largest-contentful-paint": 1055.4812,
-        "total-blocking-time": 12,
+        "first-contentful-paint": 1052.1284,
+        "largest-contentful-paint": 1064.2568,
+        "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
         "total-byte-weight": 29356,
-        "bootup-time": 33.916
+        "bootup-time": 31.28
       },
       "savings": {
         "unused-css-rules": 0,
@@ -35,7 +35,7 @@
       "device": "desktop",
       "url": "http://127.0.0.1:4322/",
       "htmlSha256": "bf05d96cfa6e1a9c706ef73573d6711fd56ffb234fcbdfb373b193888cdd9a90",
-      "fetchedAt": "2026-10-22T14:08:06.642Z",
+      "fetchedAt": "2026-10-22T14:35:15.470Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -44,12 +44,12 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 225.51015,
-        "largest-contentful-paint": 283.0203,
+        "first-contentful-paint": 261.15020000000004,
+        "largest-contentful-paint": 288.3004,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
         "total-byte-weight": 29356,
-        "bootup-time": 4.005999999999999
+        "bootup-time": 4.338999999999999
       },
       "savings": {
         "unused-css-rules": 0,
@@ -64,7 +64,7 @@
       "device": "mobile",
       "url": "http://127.0.0.1:4322/fr/",
       "htmlSha256": "ed435125cb9db21d1cfe8b6f279fadcac5a0f3cbde6afbbf35795e7be23bf673",
-      "fetchedAt": "2026-10-22T14:08:19.126Z",
+      "fetchedAt": "2026-10-22T14:35:28.458Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -73,12 +73,12 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 939.4251000000002,
-        "largest-contentful-paint": 1052.8502,
+        "first-contentful-paint": 1016.29555,
+        "largest-contentful-paint": 1056.5911,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
         "total-byte-weight": 29536,
-        "bootup-time": 30.060000000000002
+        "bootup-time": 30.779999999999994
       },
       "savings": {
         "unused-css-rules": 0,
@@ -93,7 +93,7 @@
       "device": "desktop",
       "url": "http://127.0.0.1:4322/fr/",
       "htmlSha256": "ed435125cb9db21d1cfe8b6f279fadcac5a0f3cbde6afbbf35795e7be23bf673",
-      "fetchedAt": "2026-10-22T14:08:31.360Z",
+      "fetchedAt": "2026-10-22T14:35:42.224Z",
       "lighthouseVersion": "13.5.0",
       "scores": {
         "performance": 100,
@@ -102,12 +102,12 @@
         "seo": 100
       },
       "metrics": {
-        "first-contentful-paint": 269.8342,
-        "largest-contentful-paint": 285.6684,
+        "first-contentful-paint": 270.73285000000004,
+        "largest-contentful-paint": 285.4657,
         "total-blocking-time": 0,
         "cumulative-layout-shift": 0,
         "total-byte-weight": 29536,
-        "bootup-time": 4.4159999999999995
+        "bootup-time": 5.784999999999998
       },
       "savings": {
         "unused-css-rules": 0,
